@@ -123,14 +123,14 @@ def update_html_content(html_content, achievements, plans, achievement_month=Non
     
     # Update page title and subtitle
     if achievement_month and plans_month:
-        title = f"LMS Team Monthly KPI - {achievement_month}/{plans_month}"
+        title = f"LMS Team Monthly KPI - {achievement_month}"
         html_content = re.sub(
             r'<title>[^<]*</title>',
             f'<title>{title}</title>',
             html_content
         )
         
-        subtitle = f"{achievement_month}/{plans_month}"
+        subtitle = f"{achievement_month}"
         html_content = re.sub(
             r'(<h2 class="slide-subtitle">)[^<]*(</h2>)',
             r'\1' + subtitle + r'\2',
@@ -506,9 +506,9 @@ def update_not_completed_kpis(html_content, not_completed_items):
 
     # Replace mainData.notCompletedKPIS array
     # Pattern to match the notCompletedKPIS property within mainData object
-    pattern = r'(\s*notCompletedKPIS:\s*\[).*?(\n\s*\],)'
-    replacement = f'\\1\n{not_completed_js}\\2'
-    html_content = re.sub(pattern, replacement, html_content, flags=re.DOTALL)
+    pattern = r'(notCompletedKPIS:\s*)\[[\s\S]*?\](?=\s*,\s*timelineData)'
+    replacement = f'\\1{not_completed_js}'
+    html_content = re.sub(pattern, replacement, html_content, count=1)
 
     return html_content
 
@@ -522,10 +522,12 @@ def main():
     merged_dir = os.path.join(script_dir, "merged")
     output_file = os.path.join(script_dir, "basic_slide_updated.html")
     
-    # Find achievement, plans, and not completed KPIs files dynamically
+    # Find achievement and plans files dynamically
     achievements_file = find_file_with_pattern(script_dir, "achivment.txt")
     plans_file = find_file_with_pattern(script_dir, "plans.txt")
-    not_completed_file = find_file_with_pattern(script_dir, "notCompletedKPIS.txt")
+    
+    # Use direct path for notCompletedKPIS.txt
+    not_completed_file = os.path.join(script_dir, "notCompletedKPIS.txt")
     
     print("=" * 70)
     print("SLIDE PROCESSING SCRIPT")
