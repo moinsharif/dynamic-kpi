@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Team Monthly KPI - November/December</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+        :root {
+            --primary-color: #d5114a;
+            --primary-light: #ff6b8b;
+            --primary-lighter: #ffb3c6;
+            --primary-dark: #a00d38;
+            --primary-gradient: linear-gradient(135deg, #d5114a 0%, #ff6b8b 100%);
+            --secondary-gradient: linear-gradient(135deg, #ff6b8b 0%, #ffb3c6 100%);
+            --accent-gradient: linear-gradient(135deg, #ff8fa3 0%, #ffd4dc 100%);
+            --dark-bg: #0f172a;
+            --light-bg: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(213, 17, 74, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(213, 17, 74, 0.1), 0 2px 4px -1px rgba(213, 17, 74, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(213, 17, 74, 0.1), 0 4px 6px -2px rgba(213, 17, 74, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(213, 17, 74, 0.1), 0 10px 10px -5px rgba(213, 17, 74, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(213, 17, 74, 0.25);
+            --bg-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==");
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #d5114a 0%, #ff6b8b 50%, #ffb3c6 100%),
+                radial-gradient(circle at 20% 80%, rgba(213, 17, 74, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 107, 139, 0.1) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            background-size: cover, auto, auto, 200px 200px;
+            color: var(--text-primary);
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+        }
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+        .slide {
+            width: 95%;
+            height: 95%;
+            max-width: 1400px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            position: absolute;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1;
+            border-radius: 24px;
+            box-shadow: var(--shadow-2xl);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .slide.active {
+            display: flex;
+            z-index: 10;
+            animation: slideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95) rotateX(2deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-10px) scale(1.02) rotateX(-1deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+        .slide-header {
+            background: var(--primary-gradient); padding: 60px 80px 40px; flex-shrink: 0; position: relative; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .slide-header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dots)"/></svg>'); background-size: cover, cover, 80px 80px;
+        }
+        .slide-title {
+            font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 4.2rem; font-weight: 700; color: white; /* margin-bottom: 20px; */ text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: relative; z-index: 1; letter-spacing: -0.03em; line-height: 1.1; animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        .slide-subtitle, .thank-you-subtitle {
+            font-size: 2.2rem; color: #ffffff; font-weight: 400; position: relative; z-index: 1; animation: fadeInUp 0.8s ease-out 0.4s both; letter-spacing: -0.01em; margin: 10px 0px;
+        }
+        .thank-you-subtitle{
+            color: #d5114a;
+        }
+        .thank-you-images {
+            display: flex; justify-content: center; align-items: center; gap: 25px; flex-wrap: wrap; margin-bottom: 30px;
+        }
+        .thank-you-images img {
+            width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); transition: transform 0.4s ease, box-shadow 0.4s ease; box-shadow: 0 8px 24px rgba(213, 17, 74, 0.3);
+        }
+        .thank-you-images img:hover {
+            transform: scale(1.08); box-shadow: 0 12px 36px rgba(213, 17, 74, 0.5);
+        }
+        .content-section {
+            padding: 35px 60px; flex-grow: 1; max-height: calc(100vh - 180px); background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 179, 198, 0.05) 100%); backdrop-filter: blur(20px); position: relative; overflow: hidden;
+        }
+        .content-section::before {
+            content: ""; position: absolute; inset: 0; background-image: var(--bg-image); background-size: cover; background-position: center; opacity: 0.5; z-index: 0;
+        }
+        .content-section>* {
+            position: relative; z-index: 1;
+        }
+        .content-section::-webkit-scrollbar {
+            width: 12px;
+        }
+        .content-section::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05); border-radius: 10px;
+        }
+        .content-section::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient); border-radius: 10px; border: 2px solid transparent; background-clip: content-box;
+        }
+        .content-section::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-gradient); background-clip: content-box;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 2.5rem; font-weight: 600; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 35px; position: relative; padding-left: 28px; letter-spacing: -0.02em; animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        .section-title:before {
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 75%; width: 6px; background: var(--primary-gradient); border-radius: 3px; box-shadow: 0 4px 12px rgba(213, 17, 74, 0.4);
+        }
+        .team-members {
+            display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 50px; justify-content: center;
+        }
+        .team-member {
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); padding: 18px 32px; border-radius: 50px; font-weight: 600; font-size: 1.4rem; color: var(--text-primary); box-shadow: var(--shadow-lg); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); border: 2px solid rgba(213, 17, 74, 0.15); position: relative; overflow: hidden; animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .team-member::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: var(--primary-gradient); opacity: 0; transition: opacity 0.4s ease; border-radius: 50px;
+        }
+        .team-member:hover {
+            transform: translateY(-8px) scale(1.05); box-shadow: var(--shadow-2xl); border-color: var(--primary-color); color: white;
+        }
+        .team-member:hover::before {
+            opacity: 1;
+        }
+        .team-member span {
+            position: relative; z-index: 1; transition: color 0.4s ease;
+        }
+        .achievement-list, .plan-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; align-items: start;
+        }
+        .not-completed-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); flex-direction: column; gap: 20px; width: 100%;
+        }
+        .not-completed-item {
+            background: transparent; padding: 2px 0; border: none; font-size: 1.1rem; font-weight: 400; display: flex; align-items: center; gap: 2px; cursor: default; animation: fadeInUp 0.8s ease-out 0.6s both; min-height: auto;
+        }
+        .not-completed-item:hover {
+            background: rgba(213, 17, 74, 0.05);
+        }
+        .not-completed-item p {
+            margin: 0; line-height: 1.4; color: var(--text-primary); flex: 1; font-size: 1rem;
+        }
+        .not-completed-item::before {
+            content: '•'; color: var(--primary-color); font-size: 1.2rem; font-weight: bold; flex-shrink: 0;
+        }
+        .achievement-item, .plan-item {
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); padding: 25px; border-radius: 20px; position: relative; border: 2px solid rgba(213, 17, 74, 0.15); background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 179, 198, 0.05) 100%); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); font-size: 1.2rem; font-weight: 500; min-height: 120px; display: flex; flex-direction: column; justify-content: flex-start; word-wrap: break-word; overflow-wrap: break-word; cursor: pointer; box-shadow: var(--shadow-lg); animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        .not-completed-list > .plan-item{
+            min-height: unset;
+            padding:15px;
+        }
+        .achievement-item:hover, .plan-item:hover {
+            transform: translateY(-8px) scale(1.02); box-shadow: var(--shadow-2xl); border-color: var(--primary-color); background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(255, 179, 198, 0.1) 100%);
+        }
+        .achievement-item p, .plan-item p {
+            margin: 0; padding-right: 115px; line-height: 1.4; color: var(--text-primary); position: relative; z-index: 2; display: flex; align-items: flex-start; gap: 12px;
+        }
+        .achievement-item p::before, .plan-item p::before {
+            content: ''; width: 32px; height: 32px; background: var(--primary-gradient); border-radius: 50%; flex-shrink: 0; margin-top: -2px; box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; color: white; font-family: 'Font Awesome 6 Free'; font-weight: 900; font-size: 14px;
+        }
+        .achievement-item:nth-child(1) p::before {
+            content: '\f00c';
+        }
+        .achievement-item:nth-child(2) p::before {
+            content: '\f19d';
+        }
+        .achievement-item:nth-child(3) p::before {
+            content: '\f0e8';
+        }
+        .achievement-item:nth-child(4) p::before {
+            content: '\f09d';
+        }
+        .achievement-item:nth-child(5) p::before {
+            content: '\f0e0';
+        }
+        .achievement-item:nth-child(6) p::before {
+            content: '\f155';
+        }
+        .achievement-item:nth-child(7) p::before {
+            content: '\f0c1';
+        }
+        .achievement-item:nth-child(8) p::before {
+            content: '\f084';
+        }
+        .achievement-item:nth-child(9) p::before {
+            content: '\f0f7';
+        }
+        .achievement-item:nth-child(10) p::before {
+            content: '\f023';
+        }
+        .achievement-item:nth-child(11) p::before {
+            content: '\f0c0';
+        }
+        .achievement-item:nth-child(12) p::before {
+            content: '\f0e7';
+        }
+        .achievement-item:nth-child(13) p::before {
+            content: '\f073';
+        }
+        .achievement-item:nth-child(14) p::before {
+            content: '\f022';
+        }
+        .achievement-item:nth-child(15) p::before {
+            content: '\f2b6';
+        }
+        .achievement-item:nth-child(16) p::before {
+            content: '\f1c0';
+        }
+        .achievement-item:nth-child(17) p::before {
+            content: '\f007';
+        }
+        .achievement-item:nth-child(18) p::before {
+            content: '\f0f2c';
+        }
+        .achievement-item:nth-child(19) p::before {
+            content: '\f15c';
+        }
+        .achievement-item:nth-child(20) p::before {
+            content: '\f1b9';
+        }
+        .achievement-item:nth-child(21) p::before {
+            content: '\f0a1';
+        }
+        .achievement-item:nth-child(22) p::before {
+            content: '\f0c5';
+        }
+        .plan-item:nth-child(1) p::before {
+            content: '\f1e0';
+        }
+        .plan-item:nth-child(2) p::before {
+            content: '\f201';
+        }
+        .plan-item:nth-child(3) p::before {
+            content: '\f3c5';
+        }
+        .plan-item:nth-child(4) p::before {
+            content: '\f5b7';
+        }
+        .plan-item:nth-child(5) p::before {
+            content: '\f1ea';
+        }
+        .plan-item:nth-child(6) p::before {
+            content: '\f19d';
+        }
+        .plan-item:nth-child(7) p::before {
+            content: '\f013';
+        }
+        .plan-item:nth-child(8) p::before {
+            content: '\f1f8';
+        }
+        .plan-item:nth-child(9) p::before {
+            content: '\f080';
+        }
+        .plan-item:nth-child(10) p::before {
+            content: '\f085';
+        }
+        .plan-item:nth-child(11) p::before {
+            content: '\f0ad';
+        }
+        .plan-item:nth-child(12) p::before {
+            content: '\f0e8';
+        }
+        .plan-item:nth-child(13) p::before {
+            content: '\f021';
+        }
+        .plan-item:nth-child(14) p::before {
+            content: '\f187';
+        }
+        .plan-item:nth-child(15) p::before {
+            content: '\f1f21';
+        }
+        .item-category {
+            position: absolute; top: 5px; right: 15px; background: var(--primary-gradient); color: white; padding: 6px 14px; border-radius: 18px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; box-shadow: var(--shadow-md); z-index: 3; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .slide-indicator {
+            position: fixed; bottom: 40px; right: 40px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); color: var(--text-primary); padding: 14px 28px; border-radius: 35px; font-size: 1.1rem; font-weight: 600; z-index: 100; box-shadow: var(--shadow-xl); border: 2px solid rgba(213, 17, 74, 0.2); font-family: 'Space Grotesk', 'Inter', sans-serif; animation: fadeInUp 0.8s ease-out 1s both;
+        }
+        .cover-slide {
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+        }
+        .cover-slide .slide-title {
+            font-size: 6rem; /* margin-bottom: 40px; */ text-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+        .cover-slide .slide-subtitle {
+            font-size: 2.8rem; /* margin-bottom: 40px; */ color: rgba(255, 255, 255, 0.95); animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .logo-placeholder {
+            width: 200px; height: 250px; /* background: var(--primary-gradient); */ border-radius: 50%; display: flex; justify-content: center; align-items: center; color: white; font-size: 5.5rem; font-weight: 800; /* margin-bottom: 60px; */ box-shadow: var(--shadow-2xl); position: relative; overflow: hidden; animation: fadeInUp 0.8s ease-out 0.1s both, pulse 3s ease-in-out infinite; /* border: 4px solid rgba(255, 255, 255, 0.2); */ top: -50px; left: -50px;
+        }
+        .logo-placeholder.start-slide {
+            width: 400px; height: 300px; background: var(--primary-gradient); border: 4px solid rgba(255, 255, 255, 0.2); top: 0px; left: 0px;
+        }
+        .logo-placeholder.start-slide::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent); transform: rotate(45deg); animation: shimmer 4s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+        .thank-you-slide {
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, rgba(255, 255, 255, 0) 0%, rgba(248, 250, 252, 0.8) 100%), var(--bg-image); background-size: cover, cover; background-position: center, center; background-repeat: no-repeat, no-repeat;
+        }
+        .thank-you-text {
+            font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 7rem; font-weight: 800; letter-spacing: -0.03em; text-align: center; padding: 20px; border-radius: 24px; cursor: pointer; position: relative; display: inline-block; overflow: hidden; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 8px 32px rgba(213, 17, 74, 0.25); background-image: linear-gradient(135deg, #d5114a 0%, #ff7ba5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; /* Animation & depth */ text-shadow: 0 8px 16px rgba(213, 17, 74, 0.25); filter: drop-shadow(0 4px 8px rgba(213, 17, 74, 0.3)); animation: fadeInUp 0.8s ease-out 0.4s both, pulse 4s ease-in-out infinite; transition: all 0.4s ease;
+        }
+        .thank-you-text:hover {
+            transform: scale(1.05); box-shadow: 0 12px 40px rgba(213, 17, 74, 0.4); background-image: linear-gradient(135deg, #ff7ba5 0%, #d5114a 100%);
+        }
+        .contact-info {
+            font-size: 1.8rem; color: var(--text-primary); /* margin-top: 40px; */ font-weight: 600; animation: fadeInUp 0.8s ease-out 0.6s both; line-height: 1.6; background: rgba(255, 255, 255, 0.8); padding: 30px 50px; border-radius: 20px; box-shadow: var(--shadow-lg); border: 2px solid rgba(102, 126, 234, 0.2); backdrop-filter: blur(10px);
+        }
+        .timeline {
+            padding-left: 40px; backdrop-filter: blur(15px); border-radius: 20px; position: relative; border: 2px solid rgba(213, 17, 74, 0.15); background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 179, 198, 0.05) 100%); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); font-size: 1.2rem; font-weight: 500; min-height: 120px; display: flex; flex-direction: column; justify-content: flex-start; /* word-wrap: break-word; */ overflow-wrap: break-word; cursor: pointer; box-shadow: var(--shadow-lg); animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+        .timeline-line {
+            position: absolute; left: 20px; top: 0; height: 100%; width: 6px; background: var(--primary-gradient); border-radius: 3px; box-shadow: 0 4px 12px rgba(213, 17, 74, 0.3);
+        }
+        .timeline-item {
+            display: flex; margin-bottom: 10px; position: relative; align-items: flex-start; animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+        .timeline-date {
+            flex: 0 0 160px; font-weight: 700; font-size: 1.3rem; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; padding: 12px 0; font-family: 'Space Grotesk', 'Inter', sans-serif;
+        }
+        .timeline-content {
+            flex: 1; padding: 15px 0 15px 50px; position: relative; font-size: 1.4rem; line-height: 1.5; color: var(--text-primary); font-weight: 500;
+        }
+        .timeline-dot {
+            position: absolute; left: -30px; top: 18px; width: 22px; height: 22px; border-radius: 50%; background: white; border: 5px solid var(--primary-color); z-index: 2; box-shadow: var(--shadow-lg); animation: pulse 3s ease-in-out infinite;
+        }
+        .stats-container {
+            display: flex; justify-content: space-around; margin: 50px 0; flex-wrap: wrap; gap: 30px;
+        }
+        .stat-item {
+            text-align: center; padding: 35px 25px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); border-radius: 20px; min-width: 200px; flex: 1; max-width: 300px; box-shadow: var(--shadow-lg); border: 2px solid rgba(213, 17, 74, 0.1); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+        .stat-item:hover {
+            transform: translateY(-8px) scale(1.03); box-shadow: var(--shadow-2xl); border-color: var(--primary-color);
+        }
+        .stat-number {
+            font-family: 'Space Grotesk', 'Inter', sans-serif; font-size: 4.5rem; font-weight: 800; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; line-height: 1; animation: pulse 4s ease-in-out infinite;
+        }
+        .stat-label {
+            font-size: 1.5rem; color: var(--text-secondary); margin-top: 12px; font-weight: 600; letter-spacing: -0.01em;
+        }
+        .auto-play-indicator {
+            position: fixed; top: 40px; right: 40px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); color: var(--text-primary); padding: 10px 20px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; display: none; z-index: 100; box-shadow: var(--shadow-lg); border: 2px solid rgba(213, 17, 74, 0.2); font-family: 'Space Grotesk', 'Inter', sans-serif; animation: fadeInUp 0.8s ease-out 1.2s both;
+        }
+        .auto-play-indicator.active {
+            display: block; background: var(--primary-gradient); color: white; border-color: transparent;
+        }
+        /* Custom scrollbar */
+        .content-section::-webkit-scrollbar { width: 8px;
+        }
+        .content-section::-webkit-scrollbar-track {
+            background: #f1f1f1; border-radius: 10px;
+        }
+        .content-section::-webkit-scrollbar-thumb {
+            background: rgb(213, 17, 74); border-radius: 10px;
+        }
+        .content-section::-webkit-scrollbar-thumb:hover {
+            background: rgba(213, 17, 74, 0.8);
+        }
+        /* Full screen image overlay */
+        .image-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: all 0.4s ease;
+        }
+        .image-overlay.active {
+            opacity: 1; visibility: visible;
+        }
+        .overlay-container {
+            position: relative; width: 90%; height: 90%; display: flex; justify-content: center; align-items: center;
+        }
+        .overlay-image {
+            max-width: 100%; max-height: 100%; height: auto; width: auto; border-radius: 12px; object-fit: contain; /* ensures full image visible */ box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); background: #000;
+        }
+        .overlay-header {
+            position: absolute; top: 10px; right: 10px; z-index: 5;
+        }
+        .overlay-controls {
+            display: flex; justify-content: space-between; width: 100%; margin-top: 30px; max-width: 600px;
+        }
+        .overlay-nav {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); color: white; border: 2px solid rgba(255, 255, 255, 0.2); width: 70px; height: 70px; border-radius: 50%; font-size: 2rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: var(--shadow-lg);
+        }
+        .overlay-nav:hover {
+            background: var(--primary-gradient); transform: scale(1.15) rotate(5deg); box-shadow: var(--shadow-2xl); border-color: transparent;
+        }
+        .overlay-nav:disabled {
+            background: rgba(255, 255, 255, 0.05); cursor: not-allowed; opacity: 0.4; transform: none;
+        }
+        .close-overlay {
+            background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 30px; cursor: pointer; border-radius: 50%; width: 40px; height: 40px; text-align: center; transition: 0.3s;
+        }
+        .close-overlay:hover {
+            background: rgba(255, 255, 255, 0.25); transform: scale(1.1);
+        }
+        .image-counter {
+            position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.7); color: #fff; font-size: 20px; font-weight: 600; padding: 6px 16px; border-radius: 12px; backdrop-filter: blur(5px); z-index: 3;
+        }
+        /* Icon enhancements */
+        .icon-enhancement {
+            display: inline-block; margin-right: 8px; color: inherit; opacity: 0.8; transition: all 0.3s ease;
+        }
+        .team-member:hover .icon-enhancement,
+        .achievement-item:hover .icon-enhancement,
+        .plan-item:hover .icon-enhancement {
+            opacity: 1; transform: scale(1.2);
+        }
+        /* Loading animation */
+        .loading-spinner {
+            display: none; width: 40px; height: 40px; border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid white; border-radius: 50%; animation: spin 1s linear infinite; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000;
+        }
+        @keyframes spin {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .slide {     width: 98%; height: 98%; border-radius: 16px;
+            }
+            .slide-header {
+                padding: 40px 30px 25px;
+            }
+            .slide-title {
+                font-size: 2.8rem;
+            }
+            .slide-subtitle {
+                font-size: 1.6rem;
+            }
+            .content-section {
+                padding: 30px 25px;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .achievement-list,
+            .plan-list {
+                grid-template-columns: 1fr; gap: 20px;
+            }
+            .team-members {
+                gap: 16px;
+            }
+            .team-member {
+                font-size: 1.2rem; padding: 16px 24px;
+            }
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stat-item {
+                max-width: 100%;
+                min-width: auto;
+            }
+        }
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .slide {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                page-break-after: always;
+            }
+            .slide-indicator,
+            .auto-play-indicator,
+            .image-overlay {
+                display: none !important;
+            }
+        }
+        /* Accessibility improvements */
+        .slide:focus,
+        .achievement-item:focus,
+        .plan-item:focus,
+        .team-member:focus {
+            outline: 3px solid var(--primary-gradient);
+            outline-offset: 2px;
+        }
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        .logo-placeholder .container,
+        .logo-3d-fixed .container {
+            perspective: 1000px;
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        .logo-3d-fixed {
+            position: fixed;
+            /* top: 20px; */
+            /* right: 20px; */
+            z-index: 20;
+            pointer-events: none;
+            /* prevents blocking clicks on slides */
+        }
+        .logo-placeholder .logo-3d,
+        .logo-3d-fixed .logo-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3d 8s infinite linear;
+        }
+        .logo-placeholder .logo-front,
+        .logo-placeholder .logo-back,
+        .logo-3d-fixed .logo-front,
+        .logo-3d-fixed .logo-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-placeholder .logo-front,
+        .logo-3d-fixed .logo-front {
+            z-index: 2;
+        }
+        .logo-placeholder .logo-back,
+        .logo-3d-fixed .logo-back {
+            transform: rotateY(180deg);
+        }
+        .logo-placeholder svg,
+        .logo-3d-fixed svg {
+            width: 80%;
+            height: 80%;
+            filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
+        }
+        @keyframes rotate3d {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            25% {
+                transform: rotateY(90deg) rotateX(10deg);
+            }
+            50% {
+                transform: rotateY(180deg) rotateX(0deg);
+            }
+            75% {
+                transform: rotateY(270deg) rotateX(-10deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(0deg);
+            }
+        }
+        .logo-placeholder .lms-text,
+        .logo-3d-fixed .lms-text {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            z-index: 10;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    HOW TO USE THIS PRESENTATION:
+    1. NAVIGATION:
+       - Use Left/Right Arrow keys to navigate between slides
+       - Use mouse wheel to navigate between slides
+       - Press F5 to restart the presentation from the first slide
+    2. AUTO-PLAY:
+       - Auto-play starts automatically when the page loads
+       - Press F3 to toggle auto-play on/off
+       - Auto-play stops when you manually navigate (arrow keys or mouse wheel)
+    3. SLIDE INDICATOR:
+       - Current slide number is displayed in the bottom-right corner
+       - Auto-play status is shown in the top-right corner when active
+    4. IMAGE OVERLAY:
+       - Click on any achievement item to see a full-screen image gallery
+       - Navigate between images using arrow keys, mouse wheel, or navigation buttons
+       - Click the X button to close the image gallery and return to the main slide
+    -->
+    <div class="auto-play-indicator" id="autoPlayIndicator">Auto Play: ON</div>
+    <div class="logo-3d-fixed">
+        <div class="container">
+            <div class="logo-3d">
+                <div class="logo-front">
+                    <!-- your SVG here -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-279 371 52 51">
+                        <path fill="white"
+                            d="M-227.6,395.6c-0.5-14-12.3-25-26.3-24.5c-14,0.5-25,12.3-24.5,26.3c0.5,14,12.3,25,26.3,24.5 C-238.1,421.4-227.1,409.6-227.6,395.6z M-229.2,401.4c0,0.2-0.1,0.4-0.1,0.6c-2.4,10.4-11.6,18.4-22.8,18.8 c-11.4,0.4-21.3-7.2-24.2-17.7c0-0.1-0.1-0.3-0.1-0.4c-0.5-1.7-0.7-3.5-0.8-5.4c-0.5-13.4,10-24.7,23.4-25.1 c13.4-0.5,24.7,10,25.1,23.4C-228.7,397.6-228.9,399.6-229.2,401.4L-229.2,401.4z">
+                        </path>
+                        <path fill="white"
+                            d="M-237.4,396.5c0-8.6-7-15.7-15.7-15.7c-8.6,0-15.7,7-15.7,15.7c0,8.6,7,15.7,15.7,15.7 C-244.4,412.1-237.4,405.1-237.4,396.5z M-253,411.8c-8.4,0-15.3-6.9-15.3-15.3c0-8.4,6.9-15.3,15.3-15.3c8.4,0,15.3,6.9,15.3,15.3 C-237.7,404.9-244.6,411.8-253,411.8z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,420.2c-13.1,0-23.7-10.7-23.7-23.7c0-13.1,10.7-23.7,23.7-23.7c13.1,0,23.7,10.7,23.7,23.7 C-229.3,409.6-239.9,420.2-253,420.2z M-253,373.1c-12.9,0-23.4,10.5-23.4,23.4c0,12.9,10.5,23.4,23.4,23.4 c12.9,0,23.4-10.5,23.4-23.4C-229.7,383.6-240.2,373.1-253,373.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,415.2c-10.3,0-18.7-8.4-18.7-18.7c0-10.3,8.4-18.7,18.7-18.7c10.3,0,18.7,8.4,18.7,18.7 C-234.3,406.8-242.7,415.2-253,415.2L-253,415.2z M-253,378.1c-10.1,0-18.3,8.2-18.3,18.3c0,10.1,8.2,18.3,18.3,18.3 c10.1,0,18.3-8.2,18.3-18.3C-234.7,386.4-242.9,378.1-253,378.1L-253,378.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,390.1c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2C-255,389.2-254.2,390.1-253,390.1L-253,390.1 z">
+                        </path>
+                        <path fill="white"
+                            d="M-255.1,391.4c0.9,0.8,1.5,1.9,1.9,3c0,0.1,0.1,0.2,0.2,0.4c0.1-0.3,0.2-0.6,0.3-0.8c1-2.4,2.8-3.8,5.4-4.2 c0.7-0.1,1.4-0.1,2.1-0.2c-3-0.5-5.7-0.3-7.9,2.1c-2-2.6-6.2-2.7-7.7-2.1c0.6,0.1,1.4,0.1,2.1,0.2 C-257.4,390-256.1,390.5-255.1,391.4L-255.1,391.4z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,404.9c2-2.7,4.8-4,8.1-4.5v-10.2c-1.5,0-3,0.1-4.3,0.8c-1.4,0.7-2.1,1.9-2.1,3.5c0,1.3,0.5,2.6,1,3.8 c0,0.1,0,0.2,0,0.3c-0.8,1.5-1.6,2.9-2.5,4.3c0,0-0.1,0.1-0.1,0.2c0-0.2,0-0.2,0-0.3c0-1.4,0.1-2.7,0.1-4.1c0-0.2,0-0.3,0.2-0.4 c0.1-0.1,0.2-0.3,0.3-0.4c0.1-0.3-0.1-0.6-0.4-0.7c-0.4-0.2-0.7,0-0.9,0.4c-0.1,0.3,0,0.7,0.2,0.8c0.2,0.1,0.2,0.2,0.2,0.4 c0,1.1,0,2.3,0.1,3.4c0,0.3,0,0.6,0,0.9c0,0,0,0-0.1,0c-0.9-1.5-1.7-3-2.6-4.5c0-0.1,0-0.2,0-0.3c0.5-1,0.9-2,1-3.1 c0.2-1.8-0.4-3.3-2.2-4.2c-1.1-0.5-2.2-0.7-3.4-0.7c-0.3,0-0.6,0-0.9,0v10.2C-257.9,401-255.1,402.2-253,404.9L-253,404.9z">
+                        </path>
+                        <path fill="white"
+                            d="M-244.2,392.1c0,2.8,0,5.6,0,8.4c0,0.1,0,0.2,0,0.3c0,0.1-0.1,0.2-0.2,0.2c-0.3,0.1-0.7,0.1-1,0.2 c-2.5,0.5-4.6,1.5-6.4,3.3c-0.4,0.4-0.8,0.8-1.1,1.2c0,0-0.1,0-0.1,0c-0.1-0.1-0.1-0.1-0.1-0.2c-1-1.2-2.2-2.2-3.6-3 c-1.4-0.8-2.9-1.3-4.5-1.5c-0.5-0.1-0.5-0.1-0.5-0.5c0-2.8,0-5.6,0-8.5h-0.7c0,2.3,0,4.7,0,7c0,0.7,0,1.5,0,2.2 c0,0.2,0.1,0.3,0.3,0.3c0.2,0,0.5,0,0.7,0.1c3.1,0.4,5.6,1.8,7.6,4.1c0.3,0.4,0.6,0.8,0.9,1.2c0.1-0.1,0.1-0.2,0.2-0.3 c2.2-3,5.2-4.8,9-5.1c0.3,0,0.4-0.1,0.4-0.4c0-3.1,0-6.1,0-9.2L-244.2,392.1L-244.2,392.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-242.8,392.1c0,3.3,0,6.6,0,9.9c0,0.1,0,0.2,0,0.3c0,0.1-0.1,0.2-0.2,0.2c-0.4,0.1-0.8,0.1-1.2,0.2 c-2.9,0.6-5.4,1.8-7.5,3.9c-0.5,0.5-0.9,0.9-1.3,1.4c0,0-0.1,0-0.1,0c-0.1-0.1-0.1-0.1-0.2-0.2c-1.2-1.4-2.5-2.6-4.2-3.5 c-1.7-0.9-3.4-1.5-5.3-1.7c-0.6-0.1-0.6-0.1-0.6-0.6c0-3.3,0-6.6,0-9.9h-0.9c0,2.7,0,5.5,0,8.2c0,0.9,0,1.7,0,2.6 c0,0.3,0.1,0.4,0.3,0.4c0.3,0,0.5,0,0.8,0.1c3.6,0.5,6.5,2.1,8.9,4.8c0.4,0.4,0.7,0.9,1.1,1.4c0.1-0.1,0.2-0.2,0.2-0.3 c2.6-3.5,6.1-5.5,10.5-5.9c0.3,0,0.4-0.1,0.4-0.5c0-3.6,0-7.1,0-10.7L-242.8,392.1L-242.8,392.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-251.3,385.5c0-0.1,0-0.2,0-0.2c0,0,0,0,0-0.1c-0.6-0.3-1.2-0.5-1.8-0.5c-0.4,0-0.8,0.1-1.2,0.3 c-0.2,0.1-0.3,0.1-0.4,0.2c0,0-0.1,0-0.1,0.1c0,0,0,0,0,0.1c-0.3-0.2-0.7-0.3-1-0.5c0.1-0.1,0.3-0.2,0.4-0.2 c0.8-0.4,1.5-0.9,2.3-1.3c0,0,0.1,0,0.1,0c0.7,0.4,1.3,0.7,2,1.1c0,0,0,0,0,0c0.1,0,0.2-0.1,0.3-0.1c0.1,0,0.2,0,0.2,0.2 c0,0,0,0,0,0.1c0,0.1,0,0.2,0.1,0.2c0.1,0,0.1,0.1,0.2,0.1c-0.1,0.1-0.2,0.1-0.3,0.2c0,0,0,0,0,0.1c0,0.4,0,0.8,0,1.3c0,0,0,0,0,0 h0.2v0.4c-0.1,0-0.2-0.1-0.2-0.1c0,0-0.1,0-0.1,0c-0.1,0-0.1,0.1-0.2,0.1v-0.4h0.2v-1.2C-250.9,385.3-251.1,385.4-251.3,385.5 L-251.3,385.5z M-250.8,385.1c0.1,0,0.1-0.1,0.1-0.1c0-0.1-0.1-0.1-0.1-0.1c-0.1,0-0.1,0.1-0.1,0.1 C-250.9,385.1-250.8,385.1-250.8,385.1L-250.8,385.1z M-250.7,384.7c0-0.1,0-0.1,0-0.1c0,0-0.1,0-0.1,0 C-250.8,384.7-250.8,384.7-250.7,384.7z">
+                        </path>
+                        <path fill="white"
+                            d="M-253.1,385.6L-253.1,385.6c0.6,0,1.2,0.2,1.6,0.7c0-0.3,0-0.5,0-0.8c0,0,0,0,0-0.1 c-0.3-0.1-0.5-0.2-0.8-0.3c-0.3-0.1-0.7-0.1-1-0.1c-0.5,0.1-0.9,0.2-1.3,0.4c0,0,0,0,0,0.1c0,0.2,0,0.5,0,0.7 C-254.2,385.9-253.6,385.6-253.1,385.6L-253.1,385.6z">
+                        </path>
+                        <path fill="white" d="M-269.1,396.8l-1.9,0.1l0,0.3l1.9-0.1L-269.1,396.8z"></path>
+                        <path fill="white" d="M-271,395.4l0,0.3l1.9,0.1l0-0.3L-271,395.4z"></path>
+                        <path fill="white" d="M-270.8,393.9l0,0.3l1.9,0.3l0-0.3L-270.8,393.9z"></path>
+                        <path fill="white" d="M-270.5,392.4l-0.1,0.3l1.9,0.4l0.1-0.3L-270.5,392.4z"></path>
+                        <path fill="white" d="M-270.1,390.9l-0.1,0.3l1.8,0.6l0.1-0.3L-270.1,390.9z"></path>
+                        <path fill="white" d="M-269.6,389.5l-0.1,0.3l1.8,0.7l0.1-0.3L-269.6,389.5z"></path>
+                        <path fill="white" d="M-269,388.1l-0.1,0.2l1.7,0.9l0.1-0.2L-269,388.1z"></path>
+                        <path fill="white" d="M-268.2,386.8l-0.1,0.2l1.6,1l0.1-0.2L-268.2,386.8z"></path>
+                        <path fill="white" d="M-267.3,385.6l-0.2,0.2l1.5,1.2l0.2-0.2L-267.3,385.6z"></path>
+                        <path fill="white" d="M-266.4,384.4l-0.2,0.2l1.4,1.3l0.2-0.2L-266.4,384.4z"></path>
+                        <path fill="white" d="M-265.3,383.3l-0.2,0.2l1.3,1.4l0.2-0.2L-265.3,383.3z"></path>
+                        <path fill="white" d="M-264.2,382.4l-0.2,0.2l1.2,1.5l0.2-0.2L-264.2,382.4z"></path>
+                        <path fill="white" d="M-262.9,381.5l-0.2,0.2l1.1,1.6l0.2-0.2L-262.9,381.5z"></path>
+                        <path fill="white" d="M-261.6,380.7l-0.2,0.1l0.9,1.7l0.2-0.1L-261.6,380.7z"></path>
+                        <path fill="white" d="M-260.3,380l-0.2,0.1l0.8,1.8l0.2-0.1L-260.3,380z"></path>
+                        <path fill="white" d="M-258.9,379.5l-0.3,0.1l0.6,1.8l0.3-0.1L-258.9,379.5z"></path>
+                        <path fill="white" d="M-257.4,379l-0.3,0.1l0.5,1.9l0.3-0.1L-257.4,379z"></path>
+                        <path fill="white" d="M-255.9,378.7l-0.3,0l0.3,1.9l0.3,0L-255.9,378.7z"></path>
+                        <path fill="white" d="M-254.4,378.5l-0.3,0l0.2,1.9l0.3,0L-254.4,378.5z"></path>
+                        <path fill="white" d="M-253.2,378.5l0,1.9l0.3,0l0-1.9L-253.2,378.5z"></path>
+                        <path fill="white" d="M-251.7,378.5l-0.2,1.9l0.3,0l0.2-1.9L-251.7,378.5z"></path>
+                        <path fill="white" d="M-250.2,378.7l-0.3,1.9l0.3,0l0.3-1.9L-250.2,378.7z"></path>
+                        <path fill="white" d="M-248.7,379l-0.5,1.9l0.3,0.1l0.5-1.9L-248.7,379z"></path>
+                        <path fill="white" d="M-247.2,379.5l-0.6,1.8l0.3,0.1l0.6-1.8L-247.2,379.5z"></path>
+                        <path fill="white" d="M-245.8,380l-0.8,1.8l0.2,0.1l0.8-1.8L-245.8,380z"></path>
+                        <path fill="white" d="M-244.5,380.7l-0.9,1.7l0.2,0.1l0.9-1.7L-244.5,380.7z"></path>
+                        <path fill="white" d="M-243.2,381.5l-1.1,1.6l0.2,0.2l1.1-1.6L-243.2,381.5z"></path>
+                        <path fill="white" d="M-241.9,382.3l-1.2,1.5l0.2,0.2l1.2-1.5L-241.9,382.3z"></path>
+                        <path fill="white" d="M-240.8,383.3l-1.3,1.4l0.2,0.2l1.3-1.4L-240.8,383.3z"></path>
+                        <path fill="white" d="M-239.7,384.4l-1.4,1.3l0.2,0.2l1.4-1.3L-239.7,384.4z"></path>
+                        <path fill="white" d="M-238.7,385.6l-1.5,1.2l0.2,0.2l1.5-1.2L-238.7,385.6z"></path>
+                        <path fill="white" d="M-237.9,386.8l-1.6,1l0.1,0.2l1.6-1L-237.9,386.8z"></path>
+                        <path fill="white" d="M-237.1,388.1l-1.7,0.9l0.1,0.2l1.7-0.9L-237.1,388.1z"></path>
+                        <path fill="white" d="M-236.5,389.5l-1.8,0.7l0.1,0.3l1.8-0.7L-236.5,389.5z"></path>
+                        <path fill="white" d="M-235.9,390.9l-1.8,0.6l0.1,0.3l1.8-0.6L-235.9,390.9z"></path>
+                        <path fill="white" d="M-235.5,392.4l-1.9,0.4l0.1,0.3l1.9-0.4L-235.5,392.4z"></path>
+                        <path fill="white" d="M-235.2,393.9l-1.9,0.3l0,0.3l1.9-0.3L-235.2,393.9z"></path>
+                        <path fill="white" d="M-235.1,395.4l-1.9,0.1l0,0.3l1.9-0.1L-235.1,395.4z"></path>
+                        <path fill="white" d="M-237,396.8l0,0.3l1.9,0.1l0-0.3L-237,396.8z"></path>
+                        <path fill="white" d="M-237.1,398.2l0,0.3l1.9,0.2l0-0.3L-237.1,398.2z"></path>
+                        <path fill="white" d="M-237.3,399.5l-0.1,0.3l1.9,0.4l0.1-0.3L-237.3,399.5z"></path>
+                        <path fill="white" d="M-237.6,400.8l-0.1,0.3l1.9,0.5l0.1-0.3L-237.6,400.8z"></path>
+                        <path fill="white" d="M-238,402.1l-0.1,0.3l1.8,0.7l0.1-0.3L-238,402.1z"></path>
+                        <path fill="white" d="M-238.5,403.3l-0.1,0.2l1.7,0.8l0.1-0.2L-238.5,403.3z"></path>
+                        <path fill="white" d="M-239.2,404.5l-0.1,0.2l1.7,1l0.1-0.2L-239.2,404.5z"></path>
+                        <path fill="white" d="M-239.9,405.7l-0.2,0.2l1.6,1.1l0.2-0.2L-239.9,405.7z"></path>
+                        <path fill="white" d="M-240.7,406.8l-0.2,0.2l1.5,1.3l0.2-0.2L-240.7,406.8z"></path>
+                        <path fill="white" d="M-241.6,407.7l-0.2,0.2l1.4,1.4l0.2-0.2L-241.6,407.7z"></path>
+                        <path fill="white" d="M-242.6,408.7l-0.2,0.2l1.2,1.5l0.2-0.2L-242.6,408.7z"></path>
+                        <path fill="white" d="M-243.7,409.5l-0.2,0.2l1.1,1.6l0.2-0.2L-243.7,409.5z"></path>
+                        <path fill="white" d="M-244.8,410.2l-0.2,0.1l1,1.7l0.2-0.1L-244.8,410.2z"></path>
+                        <path fill="white" d="M-246,410.9l-0.2,0.1l0.8,1.7l0.2-0.1L-246,410.9z"></path>
+                        <path fill="white" d="M-247.2,411.4l-0.3,0.1l0.7,1.8l0.3-0.1L-247.2,411.4z"></path>
+                        <path fill="white" d="M-248.5,411.9l-0.3,0.1l0.5,1.9l0.3-0.1L-248.5,411.9z"></path>
+                        <path fill="white" d="M-249.8,412.2l-0.3,0.1l0.4,1.9l0.3-0.1L-249.8,412.2z"></path>
+                        <path fill="white" d="M-251.2,412.4l-0.3,0l0.2,1.9l0.3,0L-251.2,412.4z"></path>
+                        <path fill="white" d="M-252.5,412.5l-0.3,0l0,1.9l0.3,0L-252.5,412.5z"></path>
+                        <path fill="white" d="M-254.1,412.5l-0.1,1.9l0.3,0l0.1-1.9L-254.1,412.5z"></path>
+                        <path fill="white" d="M-255.5,412.3l-0.3,1.9l0.3,0l0.3-1.9L-255.5,412.3z"></path>
+                        <path fill="white" d="M-256.8,412.1l-0.4,1.9l0.3,0.1l0.4-1.9L-256.8,412.1z"></path>
+                        <path fill="white" d="M-258.1,411.7l-0.6,1.8l0.3,0.1l0.6-1.8L-258.1,411.7z"></path>
+                        <path fill="white" d="M-259.4,411.2l-0.8,1.8l0.3,0.1l0.8-1.8L-259.4,411.2z"></path>
+                        <path fill="white" d="M-260.6,410.6l-0.9,1.7l0.2,0.1l0.9-1.7L-260.6,410.6z"></path>
+                        <path fill="white" d="M-261.8,409.9l-1,1.6l0.2,0.1l1-1.6L-261.8,409.9z"></path>
+                        <path fill="white" d="M-262.9,409.2l-1.2,1.5l0.2,0.2l1.2-1.5L-262.9,409.2z"></path>
+                        <path fill="white" d="M-263.9,408.3l-1.3,1.4l0.2,0.2l1.3-1.4L-263.9,408.3z"></path>
+                        <path fill="white" d="M-264.8,407.3l-1.4,1.3l0.2,0.2l1.4-1.3L-264.8,407.3z"></path>
+                        <path fill="white" d="M-265.7,406.3l-1.5,1.2l0.2,0.2l1.5-1.2L-265.7,406.3z"></path>
+                        <path fill="white" d="M-266.5,405.2l-1.6,1.1l0.1,0.2l1.6-1.1L-266.5,405.2z"></path>
+                        <path fill="white" d="M-267.2,404l-1.7,0.9l0.1,0.2l1.7-0.9L-267.2,404z"></path>
+                        <path fill="white" d="M-267.8,402.8l-1.8,0.8l0.1,0.2l1.8-0.8L-267.8,402.8z"></path>
+                        <path fill="white" d="M-268.3,401.5l-1.8,0.6l0.1,0.3l1.8-0.6L-268.3,401.5z"></path>
+                        <path fill="white" d="M-268.6,400.2l-1.9,0.5l0.1,0.3l1.9-0.5L-268.6,400.2z"></path>
+                        <path fill="white" d="M-268.9,398.9l-1.9,0.3l0,0.3l1.9-0.3L-268.9,398.9z"></path>
+                        <path fill="white" d="M-269.1,398l-1.9,0.1l0,0.3l1.9-0.1L-269.1,398z"></path>
+                    </svg>
+                </div>
+                <div class="logo-back">
+                    <!-- optional mirrored SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-279 371 52 51">
+                        <path fill="white"
+                            d="M-227.6,395.6c-0.5-14-12.3-25-26.3-24.5c-14,0.5-25,12.3-24.5,26.3c0.5,14,12.3,25,26.3,24.5 C-238.1,421.4-227.1,409.6-227.6,395.6z M-229.2,401.4c0,0.2-0.1,0.4-0.1,0.6c-2.4,10.4-11.6,18.4-22.8,18.8 c-11.4,0.4-21.3-7.2-24.2-17.7c0-0.1-0.1-0.3-0.1-0.4c-0.5-1.7-0.7-3.5-0.8-5.4c-0.5-13.4,10-24.7,23.4-25.1 c13.4-0.5,24.7,10,25.1,23.4C-228.7,397.6-228.9,399.6-229.2,401.4L-229.2,401.4z">
+                        </path>
+                        <path fill="white"
+                            d="M-237.4,396.5c0-8.6-7-15.7-15.7-15.7c-8.6,0-15.7,7-15.7,15.7c0,8.6,7,15.7,15.7,15.7 C-244.4,412.1-237.4,405.1-237.4,396.5z M-253,411.8c-8.4,0-15.3-6.9-15.3-15.3c0-8.4,6.9-15.3,15.3-15.3c8.4,0,15.3,6.9,15.3,15.3 C-237.7,404.9-244.6,411.8-253,411.8z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,420.2c-13.1,0-23.7-10.7-23.7-23.7c0-13.1,10.7-23.7,23.7-23.7c13.1,0,23.7,10.7,23.7,23.7 C-229.3,409.6-239.9,420.2-253,420.2z M-253,373.1c-12.9,0-23.4,10.5-23.4,23.4c0,12.9,10.5,23.4,23.4,23.4 c12.9,0,23.4-10.5,23.4-23.4C-229.7,383.6-240.2,373.1-253,373.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,415.2c-10.3,0-18.7-8.4-18.7-18.7c0-10.3,8.4-18.7,18.7-18.7c10.3,0,18.7,8.4,18.7,18.7 C-234.3,406.8-242.7,415.2-253,415.2L-253,415.2z M-253,378.1c-10.1,0-18.3,8.2-18.3,18.3c0,10.1,8.2,18.3,18.3,18.3 c10.1,0,18.3-8.2,18.3-18.3C-234.7,386.4-242.9,378.1-253,378.1L-253,378.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,390.1c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2c-1.1,0-2,0.9-2,2C-255,389.2-254.2,390.1-253,390.1L-253,390.1 z">
+                        </path>
+                        <path fill="white"
+                            d="M-255.1,391.4c0.9,0.8,1.5,1.9,1.9,3c0,0.1,0.1,0.2,0.2,0.4c0.1-0.3,0.2-0.6,0.3-0.8c1-2.4,2.8-3.8,5.4-4.2 c0.7-0.1,1.4-0.1,2.1-0.2c-3-0.5-5.7-0.3-7.9,2.1c-2-2.6-6.2-2.7-7.7-2.1c0.6,0.1,1.4,0.1,2.1,0.2 C-257.4,390-256.1,390.5-255.1,391.4L-255.1,391.4z">
+                        </path>
+                        <path fill="white"
+                            d="M-253,404.9c2-2.7,4.8-4,8.1-4.5v-10.2c-1.5,0-3,0.1-4.3,0.8c-1.4,0.7-2.1,1.9-2.1,3.5c0,1.3,0.5,2.6,1,3.8 c0,0.1,0,0.2,0,0.3c-0.8,1.5-1.6,2.9-2.5,4.3c0,0-0.1,0.1-0.1,0.2c0-0.2,0-0.2,0-0.3c0-1.4,0.1-2.7,0.1-4.1c0-0.2,0-0.3,0.2-0.4 c0.1-0.1,0.2-0.3,0.3-0.4c0.1-0.3-0.1-0.6-0.4-0.7c-0.4-0.2-0.7,0-0.9,0.4c-0.1,0.3,0,0.7,0.2,0.8c0.2,0.1,0.2,0.2,0.2,0.4 c0,1.1,0,2.3,0.1,3.4c0,0.3,0,0.6,0,0.9c0,0,0,0-0.1,0c-0.9-1.5-1.7-3-2.6-4.5c0-0.1,0-0.2,0-0.3c0.5-1,0.9-2,1-3.1 c0.2-1.8-0.4-3.3-2.2-4.2c-1.1-0.5-2.2-0.7-3.4-0.7c-0.3,0-0.6,0-0.9,0v10.2C-257.9,401-255.1,402.2-253,404.9L-253,404.9z">
+                        </path>
+                        <path fill="white"
+                            d="M-244.2,392.1c0,2.8,0,5.6,0,8.4c0,0.1,0,0.2,0,0.3c0,0.1-0.1,0.2-0.2,0.2c-0.3,0.1-0.7,0.1-1,0.2 c-2.5,0.5-4.6,1.5-6.4,3.3c-0.4,0.4-0.8,0.8-1.1,1.2c0,0-0.1,0-0.1,0c-0.1-0.1-0.1-0.1-0.1-0.2c-1-1.2-2.2-2.2-3.6-3 c-1.4-0.8-2.9-1.3-4.5-1.5c-0.5-0.1-0.5-0.1-0.5-0.5c0-2.8,0-5.6,0-8.5h-0.7c0,2.3,0,4.7,0,7c0,0.7,0,1.5,0,2.2 c0,0.2,0.1,0.3,0.3,0.3c0.2,0,0.5,0,0.7,0.1c3.1,0.4,5.6,1.8,7.6,4.1c0.3,0.4,0.6,0.8,0.9,1.2c0.1-0.1,0.1-0.2,0.2-0.3 c2.2-3,5.2-4.8,9-5.1c0.3,0,0.4-0.1,0.4-0.4c0-3.1,0-6.1,0-9.2L-244.2,392.1L-244.2,392.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-242.8,392.1c0,3.3,0,6.6,0,9.9c0,0.1,0,0.2,0,0.3c0,0.1-0.1,0.2-0.2,0.2c-0.4,0.1-0.8,0.1-1.2,0.2 c-2.9,0.6-5.4,1.8-7.5,3.9c-0.5,0.5-0.9,0.9-1.3,1.4c0,0-0.1,0-0.1,0c-0.1-0.1-0.1-0.1-0.2-0.2c-1.2-1.4-2.5-2.6-4.2-3.5 c-1.7-0.9-3.4-1.5-5.3-1.7c-0.6-0.1-0.6-0.1-0.6-0.6c0-3.3,0-6.6,0-9.9h-0.9c0,2.7,0,5.5,0,8.2c0,0.9,0,1.7,0,2.6 c0,0.3,0.1,0.4,0.3,0.4c0.3,0,0.5,0,0.8,0.1c3.6,0.5,6.5,2.1,8.9,4.8c0.4,0.4,0.7,0.9,1.1,1.4c0.1-0.1,0.2-0.2,0.2-0.3 c2.6-3.5,6.1-5.5,10.5-5.9c0.3,0,0.4-0.1,0.4-0.5c0-3.6,0-7.1,0-10.7L-242.8,392.1L-242.8,392.1z">
+                        </path>
+                        <path fill="white"
+                            d="M-251.3,385.5c0-0.1,0-0.2,0-0.2c0,0,0,0,0-0.1c-0.6-0.3-1.2-0.5-1.8-0.5c-0.4,0-0.8,0.1-1.2,0.3 c-0.2,0.1-0.3,0.1-0.4,0.2c0,0-0.1,0-0.1,0.1c0,0,0,0,0,0.1c-0.3-0.2-0.7-0.3-1-0.5c0.1-0.1,0.3-0.2,0.4-0.2 c0.8-0.4,1.5-0.9,2.3-1.3c0,0,0.1,0,0.1,0c0.7,0.4,1.3,0.7,2,1.1c0,0,0,0,0,0c0.1,0,0.2-0.1,0.3-0.1c0.1,0,0.2,0,0.2,0.2 c0,0,0,0,0,0.1c0,0.1,0,0.2,0.1,0.2c0.1,0,0.1,0.1,0.2,0.1c-0.1,0.1-0.2,0.1-0.3,0.2c0,0,0,0,0,0.1c0,0.4,0,0.8,0,1.3c0,0,0,0,0,0 h0.2v0.4c-0.1,0-0.2-0.1-0.2-0.1c0,0-0.1,0-0.1,0c-0.1,0-0.1,0.1-0.2,0.1v-0.4h0.2v-1.2C-250.9,385.3-251.1,385.4-251.3,385.5 L-251.3,385.5z M-250.8,385.1c0.1,0,0.1-0.1,0.1-0.1c0-0.1-0.1-0.1-0.1-0.1c-0.1,0-0.1,0.1-0.1,0.1 C-250.9,385.1-250.8,385.1-250.8,385.1L-250.8,385.1z M-250.7,384.7c0-0.1,0-0.1,0-0.1c0,0-0.1,0-0.1,0 C-250.8,384.7-250.8,384.7-250.7,384.7z">
+                        </path>
+                        <path fill="white"
+                            d="M-253.1,385.6L-253.1,385.6c0.6,0,1.2,0.2,1.6,0.7c0-0.3,0-0.5,0-0.8c0,0,0,0,0-0.1 c-0.3-0.1-0.5-0.2-0.8-0.3c-0.3-0.1-0.7-0.1-1-0.1c-0.5,0.1-0.9,0.2-1.3,0.4c0,0,0,0,0,0.1c0,0.2,0,0.5,0,0.7 C-254.2,385.9-253.6,385.6-253.1,385.6L-253.1,385.6z">
+                        </path>
+                        <path fill="white" d="M-269.1,396.8l-1.9,0.1l0,0.3l1.9-0.1L-269.1,396.8z"></path>
+                        <path fill="white" d="M-271,395.4l0,0.3l1.9,0.1l0-0.3L-271,395.4z"></path>
+                        <path fill="white" d="M-270.8,393.9l0,0.3l1.9,0.3l0-0.3L-270.8,393.9z"></path>
+                        <path fill="white" d="M-270.5,392.4l-0.1,0.3l1.9,0.4l0.1-0.3L-270.5,392.4z"></path>
+                        <path fill="white" d="M-270.1,390.9l-0.1,0.3l1.8,0.6l0.1-0.3L-270.1,390.9z"></path>
+                        <path fill="white" d="M-269.6,389.5l-0.1,0.3l1.8,0.7l0.1-0.3L-269.6,389.5z"></path>
+                        <path fill="white" d="M-269,388.1l-0.1,0.2l1.7,0.9l0.1-0.2L-269,388.1z"></path>
+                        <path fill="white" d="M-268.2,386.8l-0.1,0.2l1.6,1l0.1-0.2L-268.2,386.8z"></path>
+                        <path fill="white" d="M-267.3,385.6l-0.2,0.2l1.5,1.2l0.2-0.2L-267.3,385.6z"></path>
+                        <path fill="white" d="M-266.4,384.4l-0.2,0.2l1.4,1.3l0.2-0.2L-266.4,384.4z"></path>
+                        <path fill="white" d="M-265.3,383.3l-0.2,0.2l1.3,1.4l0.2-0.2L-265.3,383.3z"></path>
+                        <path fill="white" d="M-264.2,382.4l-0.2,0.2l1.2,1.5l0.2-0.2L-264.2,382.4z"></path>
+                        <path fill="white" d="M-262.9,381.5l-0.2,0.2l1.1,1.6l0.2-0.2L-262.9,381.5z"></path>
+                        <path fill="white" d="M-261.6,380.7l-0.2,0.1l0.9,1.7l0.2-0.1L-261.6,380.7z"></path>
+                        <path fill="white" d="M-260.3,380l-0.2,0.1l0.8,1.8l0.2-0.1L-260.3,380z"></path>
+                        <path fill="white" d="M-258.9,379.5l-0.3,0.1l0.6,1.8l0.3-0.1L-258.9,379.5z"></path>
+                        <path fill="white" d="M-257.4,379l-0.3,0.1l0.5,1.9l0.3-0.1L-257.4,379z"></path>
+                        <path fill="white" d="M-255.9,378.7l-0.3,0l0.3,1.9l0.3,0L-255.9,378.7z"></path>
+                        <path fill="white" d="M-254.4,378.5l-0.3,0l0.2,1.9l0.3,0L-254.4,378.5z"></path>
+                        <path fill="white" d="M-253.2,378.5l0,1.9l0.3,0l0-1.9L-253.2,378.5z"></path>
+                        <path fill="white" d="M-251.7,378.5l-0.2,1.9l0.3,0l0.2-1.9L-251.7,378.5z"></path>
+                        <path fill="white" d="M-250.2,378.7l-0.3,1.9l0.3,0l0.3-1.9L-250.2,378.7z"></path>
+                        <path fill="white" d="M-248.7,379l-0.5,1.9l0.3,0.1l0.5-1.9L-248.7,379z"></path>
+                        <path fill="white" d="M-247.2,379.5l-0.6,1.8l0.3,0.1l0.6-1.8L-247.2,379.5z"></path>
+                        <path fill="white" d="M-245.8,380l-0.8,1.8l0.2,0.1l0.8-1.8L-245.8,380z"></path>
+                        <path fill="white" d="M-244.5,380.7l-0.9,1.7l0.2,0.1l0.9-1.7L-244.5,380.7z"></path>
+                        <path fill="white" d="M-243.2,381.5l-1.1,1.6l0.2,0.2l1.1-1.6L-243.2,381.5z"></path>
+                        <path fill="white" d="M-241.9,382.3l-1.2,1.5l0.2,0.2l1.2-1.5L-241.9,382.3z"></path>
+                        <path fill="white" d="M-240.8,383.3l-1.3,1.4l0.2,0.2l1.3-1.4L-240.8,383.3z"></path>
+                        <path fill="white" d="M-239.7,384.4l-1.4,1.3l0.2,0.2l1.4-1.3L-239.7,384.4z"></path>
+                        <path fill="white" d="M-238.7,385.6l-1.5,1.2l0.2,0.2l1.5-1.2L-238.7,385.6z"></path>
+                        <path fill="white" d="M-237.9,386.8l-1.6,1l0.1,0.2l1.6-1L-237.9,386.8z"></path>
+                        <path fill="white" d="M-237.1,388.1l-1.7,0.9l0.1,0.2l1.7-0.9L-237.1,388.1z"></path>
+                        <path fill="white" d="M-236.5,389.5l-1.8,0.7l0.1,0.3l1.8-0.7L-236.5,389.5z"></path>
+                        <path fill="white" d="M-235.9,390.9l-1.8,0.6l0.1,0.3l1.8-0.6L-235.9,390.9z"></path>
+                        <path fill="white" d="M-235.5,392.4l-1.9,0.4l0.1,0.3l1.9-0.4L-235.5,392.4z"></path>
+                        <path fill="white" d="M-235.2,393.9l-1.9,0.3l0,0.3l1.9-0.3L-235.2,393.9z"></path>
+                        <path fill="white" d="M-235.1,395.4l-1.9,0.1l0,0.3l1.9-0.1L-235.1,395.4z"></path>
+                        <path fill="white" d="M-237,396.8l0,0.3l1.9,0.1l0-0.3L-237,396.8z"></path>
+                        <path fill="white" d="M-237.1,398.2l0,0.3l1.9,0.2l0-0.3L-237.1,398.2z"></path>
+                        <path fill="white" d="M-237.3,399.5l-0.1,0.3l1.9,0.4l0.1-0.3L-237.3,399.5z"></path>
+                        <path fill="white" d="M-237.6,400.8l-0.1,0.3l1.9,0.5l0.1-0.3L-237.6,400.8z"></path>
+                        <path fill="white" d="M-238,402.1l-0.1,0.3l1.8,0.7l0.1-0.3L-238,402.1z"></path>
+                        <path fill="white" d="M-238.5,403.3l-0.1,0.2l1.7,0.8l0.1-0.2L-238.5,403.3z"></path>
+                        <path fill="white" d="M-239.2,404.5l-0.1,0.2l1.7,1l0.1-0.2L-239.2,404.5z"></path>
+                        <path fill="white" d="M-239.9,405.7l-0.2,0.2l1.6,1.1l0.2-0.2L-239.9,405.7z"></path>
+                        <path fill="white" d="M-240.7,406.8l-0.2,0.2l1.5,1.3l0.2-0.2L-240.7,406.8z"></path>
+                        <path fill="white" d="M-241.6,407.7l-0.2,0.2l1.4,1.4l0.2-0.2L-241.6,407.7z"></path>
+                        <path fill="white" d="M-242.6,408.7l-0.2,0.2l1.2,1.5l0.2-0.2L-242.6,408.7z"></path>
+                        <path fill="white" d="M-243.7,409.5l-0.2,0.2l1.1,1.6l0.2-0.2L-243.7,409.5z"></path>
+                        <path fill="white" d="M-244.8,410.2l-0.2,0.1l1,1.7l0.2-0.1L-244.8,410.2z"></path>
+                        <path fill="white" d="M-246,410.9l-0.2,0.1l0.8,1.7l0.2-0.1L-246,410.9z"></path>
+                        <path fill="white" d="M-247.2,411.4l-0.3,0.1l0.7,1.8l0.3-0.1L-247.2,411.4z"></path>
+                        <path fill="white" d="M-248.5,411.9l-0.3,0.1l0.5,1.9l0.3-0.1L-248.5,411.9z"></path>
+                        <path fill="white" d="M-249.8,412.2l-0.3,0.1l0.4,1.9l0.3-0.1L-249.8,412.2z"></path>
+                        <path fill="white" d="M-251.2,412.4l-0.3,0l0.2,1.9l0.3,0L-251.2,412.4z"></path>
+                        <path fill="white" d="M-252.5,412.5l-0.3,0l0,1.9l0.3,0L-252.5,412.5z"></path>
+                        <path fill="white" d="M-254.1,412.5l-0.1,1.9l0.3,0l0.1-1.9L-254.1,412.5z"></path>
+                        <path fill="white" d="M-255.5,412.3l-0.3,1.9l0.3,0l0.3-1.9L-255.5,412.3z"></path>
+                        <path fill="white" d="M-256.8,412.1l-0.4,1.9l0.3,0.1l0.4-1.9L-256.8,412.1z"></path>
+                        <path fill="white" d="M-258.1,411.7l-0.6,1.8l0.3,0.1l0.6-1.8L-258.1,411.7z"></path>
+                        <path fill="white" d="M-259.4,411.2l-0.8,1.8l0.3,0.1l0.8-1.8L-259.4,411.2z"></path>
+                        <path fill="white" d="M-260.6,410.6l-0.9,1.7l0.2,0.1l0.9-1.7L-260.6,410.6z"></path>
+                        <path fill="white" d="M-261.8,409.9l-1,1.6l0.2,0.1l1-1.6L-261.8,409.9z"></path>
+                        <path fill="white" d="M-262.9,409.2l-1.2,1.5l0.2,0.2l1.2-1.5L-262.9,409.2z"></path>
+                        <path fill="white" d="M-263.9,408.3l-1.3,1.4l0.2,0.2l1.3-1.4L-263.9,408.3z"></path>
+                        <path fill="white" d="M-264.8,407.3l-1.4,1.3l0.2,0.2l1.4-1.3L-264.8,407.3z"></path>
+                        <path fill="white" d="M-265.7,406.3l-1.5,1.2l0.2,0.2l1.5-1.2L-265.7,406.3z"></path>
+                        <path fill="white" d="M-266.5,405.2l-1.6,1.1l0.1,0.2l1.6-1.1L-266.5,405.2z"></path>
+                        <path fill="white" d="M-267.2,404l-1.7,0.9l0.1,0.2l1.7-0.9L-267.2,404z"></path>
+                        <path fill="white" d="M-267.8,402.8l-1.8,0.8l0.1,0.2l1.8-0.8L-267.8,402.8z"></path>
+                        <path fill="white" d="M-268.3,401.5l-1.8,0.6l0.1,0.3l1.8-0.6L-268.3,401.5z"></path>
+                        <path fill="white" d="M-268.6,400.2l-1.9,0.5l0.1,0.3l1.9-0.5L-268.6,400.2z"></path>
+                        <path fill="white" d="M-268.9,398.9l-1.9,0.3l0,0.3l1.9-0.3L-268.9,398.9z"></path>
+                        <path fill="white" d="M-269.1,398l-1.9,0.1l0,0.3l1.9-0.1L-269.1,398z"></path>
+                    </svg>
+                </div>
+                <div class="lms-text">LMS</div>
+            </div>
+        </div>
+    </div>
+    <!-- Full screen image overlay -->
+    <div class="image-overlay" id="imageOverlay">
+        <div class="overlay-container">
+            <div class="overlay-header">
+                <button class="close-overlay" id="closeOverlay">&times;</button>
+            </div>
+            <img src="" alt="Achievement" class="overlay-image" id="overlayImage">
+            <div class="image-counter" id="imageCounter">1 / 3</div>
+        </div>
+    </div>
+    <div class="presentation-container">
+        <!-- Slide 1: Cover -->
+        <div class="slide active cover-slide" id="slide-0">
+            <div class="logo-placeholder start-slide">
+                
+            </div>
+            <h1 class="slide-title">Monthly KPI</h1>
+            <h2 class="slide-subtitle">November/December</h2>
+            <div class="content-section">
+                <h3 class="section-title">For the LMS Team</h3>
+                <div class="team-members">
+                    <div class="team-member"><span><i class="fas fa-user icon-enhancement"></i>Fizul Haque</span></div>
+                    <div class="team-member"><span><i class="fas fa-user icon-enhancement"></i>Samiul Islam</span></div>
+                    <div class="team-member"><span><i class="fas fa-user icon-enhancement"></i>Moin Sharif</span></div>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 2: Team Members -->
+        <div class="slide" id="slide-1">
+            <div class="slide-header">
+                <h1 class="slide-title">Team Members</h1>
+                <div class="slide-subtitle">Our dedicated LMS team</div>
+            </div>
+            <div class="content-section">
+                <div class="team-members">
+                    <div class="team-member"><span><i class="fas fa-user-tie icon-enhancement"></i>Fizul Haque</span>
+                    </div>
+                    <div class="team-member"><span><i class="fas fa-user-tie icon-enhancement"></i>Samiul Islam</span>
+                    </div>
+                    <div class="team-member"><span><i class="fas fa-user-tie icon-enhancement"></i>Moin Sharif</span>
+                    </div>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25</div>
+                        <div class="stat-label">July Achievements</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">August Plans</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- DYNAMIC SLIDES WILL BE INSERTED HERE -->
+        <!-- Timeline slide will be inserted dynamically -->
+        <!-- Slide 12: Thank You -->
+        <div class="slide thank-you-slide" id="slide-11">
+            <!-- 3 images in one row -->
+            <div class="thank-you-images" id="thankYouImagesContainer">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+                    alt="Fizul Haque">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+                    alt="Samiul Islam">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+                    alt="Moin Sharif">
+            </div>
+            <div class="thank-you-text">Thank You!</div>
+            <div class="thank-you-subtitle">For your attention and support</div>
+            <div class="contact-info">
+                <p>LMS Team</p>
+                <p>Questions? Contact us at info@orbittechinc.com</p>
+            </div>
+        </div>
+    </div>
+    <div class="slide-indicator" id="slideIndicator">1 / 12</div>
+    <script>
+    const mainData = {
+        slidesData: [
+  {
+    "title": "November Achievements",
+    "subtitle": "Key accomplishments this month",
+    "data": [
+      {
+        "text": "Survey feedback",
+        "category": "LMS",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Dashboard portal batch recommandation",
+        "category": "LM",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Trainer evaluation and report generate",
+        "category": "LM",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Learner/Trainer location tracking with filter, report generate.",
+        "category": "LMS",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Supervisor Signatrue collection for specific course",
+        "category": "LMS",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Page builder with page block",
+        "category": "LMS-Market",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Blog and forums",
+        "category": "LMS-Market",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Graphical Application setup (App Installation)",
+        "category": "LMS-Market",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Instructor revenue settings",
+        "category": "LMS-Market",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Order revnue report",
+        "category": "LMS-Market",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Daily Issue fixes",
+        "category": "LMS",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Dashboard portal Role/Permission",
+        "category": "Additional-LM",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Mandetory Trainings",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Trainings Sector and Expertise",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Trainer Directory with compliance document",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "User multiple location",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Advance phlebotomy report export",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Workplace agreement",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Map pining system and preview with a range.",
+        "category": "Additional-LMS",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Total task feedback by the assessor (filter by date)",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Student ID Card, Mail template and UI desgin/update",
+        "category": "Additional-Task",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Abandoned Checkout (SMS Issue Fixed)",
+        "category": "Additional-General",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Google Sheet AppScript (Asignment)",
+        "category": "Additional-General",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "PTI Virus Issue",
+        "category": "Additional-General",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      },
+      {
+        "text": "Fake date issue fixed",
+        "category": "Additional-General",
+        "images": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+        ]
+      }
+    ],
+    "listClass": "achievement-list",
+    "itemsPerSlide": 6
+  },
+  {
+    "title": "December Plans",
+    "subtitle": "Upcoming tasks and objectives",
+    "data": [
+      {
+        "text": "Daily DB backup functionality",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Application backup",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Dashboard Statistics",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Identify Themeforest terms and condition",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Fixed Theme forest requirement",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Set project in theme forest.",
+        "category": "LMS-Market"
+      },
+      {
+        "text": "Furue Plan for the Clickup replacement",
+        "category": "New Project"
+      },
+      {
+        "text": "Meeting Management and Work Report",
+        "category": "New Project"
+      },
+      {
+        "text": "Daily Issue fixes",
+        "category": "LMS"
+      }
+    ],
+    "listClass": "plan-list",
+    "itemsPerSlide": 6
+  }
+],
+    notCompletedKPIS: [
+  {
+    "text": "Daily DB backup functionality",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Application backup",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Order revnue report",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Dashboard Statistics",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Identify Themeforest terms and condition",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Fixed Theme forest requirement",
+    "category": "LMS-Market"
+  },
+  {
+    "text": "Set project in theme forest.",
+    "category": "LMS-Market"
+  }
+],
+    timelineData: [
+  {
+    "date": "Nov 1-15",
+    "content": "Early Nov: Started work on LMS improvements (10 tasks)"
+  },
+  {
+    "date": "Nov 16-30",
+    "content": "Late Nov: Completed 25 achievements"
+  },
+  {
+    "date": "Dec 1-15",
+    "content": "Early Dec: Planning phase for 9 tasks"
+  },
+  {
+    "date": "Dec 16-31",
+    "content": "Late Dec: Implementation of critical features"
+  },
+  {
+    "date": "Nov",
+    "content": "Completed: Survey feedback"
+  },
+  {
+    "date": "Dec",
+    "content": "Planning: Daily DB backup functionality"
+  }
+],
+    teamMembersData: [
+    {
+        "name": "Fizul Haque",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+    },
+    {
+        "name": "Samiul Islam",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+    },
+    {
+        "name": "Moin Sharif",
+        "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+    }
+    ]
+};
+let currentSlide = 0;
+let totalSlides = 0;
+let autoPlayInterval;
+let isAutoPlaying = false;
+let currentImageIndex = 0;
+let currentImages = [];
+let isOverlayActive = false;
+// Initialize presentation
+function init() {
+    // Hide all slides
+    const slides = document.querySelectorAll('.slide');
+    totalSlides = slides.length;
+    for (let i = 0; i < totalSlides; i++) {
+        slides[i].style.display = 'none';
+    }
+    // Show first slide
+    showSlide(0);
+    // Add keyboard + wheel navigation
+    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener('wheel', handleWheel, { passive: false });
+    // Image overlay setup
+    setupImageOverlay();
+    // Populate thank you images
+    populateThankYouImages();
+    // Start auto-play
+    startAutoPlay();
+}
+// Show specific slide
+function showSlide(slideIndex) {
+    for (let i = 0; i < totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (slide) {
+            slide.style.display = 'none';
+            slide.classList.remove('active');
+        }
+    }
+    const activeSlide = document.getElementById(`slide-${slideIndex}`);
+    if (activeSlide) {
+        activeSlide.style.display = 'flex';
+        activeSlide.classList.add('active');
+    }
+    document.getElementById('slideIndicator').textContent = `${slideIndex + 1} / ${totalSlides}`;
+    // Position logo based on slide: Show large centered on slide 0, small fixed on others
+    const logo3dFixed = document.querySelector('.logo-3d-fixed');
+    if (logo3dFixed) {
+        if (slideIndex === 0) {
+            // Position the fixed logo in the center of the first slide
+            logo3dFixed.style.position = 'absolute';
+            logo3dFixed.style.top = '25%';
+            logo3dFixed.style.left = '57.5%';
+            logo3dFixed.style.transform = 'translate(-50%, -50%)';
+            logo3dFixed.style.width = '400px';
+            logo3dFixed.style.height = '300px';
+            logo3dFixed.style.display = 'block';
+        } else {
+            // Reset to fixed position for other slides
+            logo3dFixed.style.position = 'fixed';
+            logo3dFixed.style.top = '5px';
+            logo3dFixed.style.right = '25px';
+            logo3dFixed.style.left = '';
+            logo3dFixed.style.transform = 'none';
+            logo3dFixed.style.width = 'auto';
+            logo3dFixed.style.height = 'auto';
+        }
+        // Change logo color: #d5114a for last slide, white for others
+        const logoColor = slideIndex === totalSlides -1 ? '#d5114a' : 'white';
+        // Update SVG paths color
+        const svgPaths = logo3dFixed.querySelectorAll('svg path');
+        svgPaths.forEach(path => {
+            path.setAttribute('fill', logoColor);
+        });
+        // Update LMS text color
+        const lmsText = logo3dFixed.querySelector('.lms-text');
+        if (lmsText) {
+            lmsText.style.color = logoColor;
+        }
+    }
+}
+// Slide navigation
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+function previousSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+// Keyboard control
+function handleKeyPress(e) {
+    // Stop auto-play when user interacts
+    if (isAutoPlaying && (e.key === 'ArrowRight' || e.key === 'ArrowLeft' || e.key === ' ')) {
+        stopAutoPlay();
+    }
+    if (isOverlayActive) {
+        // Image overlay keyboard navigation
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextImage();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            previousImage();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closeImageOverlay();
+        }
+    } else {
+        // Slide navigation
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            previousSlide();
+        } else if (e.key === 'F5') {
+            e.preventDefault();
+            currentSlide = 0;
+            showSlide(currentSlide);
+            startAutoPlay();
+        } else if (e.key === 'F3') {
+            e.preventDefault();
+            if (isAutoPlaying) stopAutoPlay();
+            else startAutoPlay();
+        }
+    }
+}
+// Mouse wheel slide control
+let scrollCount = 0;
+let lastScrollTime = 0;
+function handleWheel(e) {
+    if (isAutoPlaying) stopAutoPlay();
+    e.preventDefault();
+    const now = Date.now();
+    // Reset count if scrolls are too far apart (>1 second gap)
+    if (now - lastScrollTime > 1000) {
+        scrollCount = 0;
+    }
+    lastScrollTime = now;
+    // Increase scroll count
+    scrollCount++;
+    // Only change slide every 3 scrolls
+    if (scrollCount >= 2) {
+        scrollCount = 0; // reset counter
+        if (isOverlayActive) {
+            if (e.deltaY > 0) nextImage();
+            else previousImage();
+        } else {
+            if (e.deltaY > 0) nextSlide();
+            else previousSlide();
+        }
+    }
+}
+// Auto-play
+function startAutoPlay() {
+    if (isAutoPlaying) return;
+    isAutoPlaying = true;
+    document.getElementById('autoPlayIndicator').classList.add('active');
+    autoPlayInterval = setInterval(() => {
+        nextSlide();
+    }, 5000);
+}
+function stopAutoPlay() {
+    if (!isAutoPlaying) return;
+    isAutoPlaying = false;
+    document.getElementById('autoPlayIndicator').classList.remove('active');
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+}
+// ======================
+// 🔹 IMAGE OVERLAY LOGIC
+// ======================
+function setupImageOverlay() {
+    const achievementItems = document.querySelectorAll('.achievement-item');
+    const imageOverlay = document.getElementById('imageOverlay');
+    const closeOverlay = document.getElementById('closeOverlay');
+    const overlayImage = document.getElementById('overlayImage');
+    const imageCounter = document.getElementById('imageCounter');
+    // Open overlay on item click
+    achievementItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const imagesData = item.getAttribute('data-images');
+            if (imagesData) {
+                try {
+                    currentImages = JSON.parse(imagesData);
+                    currentImageIndex = 0;
+                    showImageOverlay();
+                } catch (e) {
+                    console.error('Error parsing images data:', e);
+                }
+            }
+        });
+    });
+    // Close overlay
+    closeOverlay.addEventListener('click', closeImageOverlay);
+    // Close overlay when clicking outside the image
+    imageOverlay.addEventListener('click', (e) => {
+        if (e.target === imageOverlay) {
+            closeImageOverlay();
+        }
+    });
+}
+// Show overlay image
+function showImageOverlay() {
+    if (currentImages.length === 0) return;
+    const imageOverlay = document.getElementById('imageOverlay');
+    const overlayImage = document.getElementById('overlayImage');
+    const imageCounter = document.getElementById('imageCounter');
+    overlayImage.src = currentImages[currentImageIndex];
+    imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
+    imageOverlay.classList.add('active');
+    isOverlayActive = true;
+}
+// Close overlay
+function closeImageOverlay() {
+    const imageOverlay = document.getElementById('imageOverlay');
+    imageOverlay.classList.remove('active');
+    isOverlayActive = false;
+}
+// Go to next image (keyboard or wheel)
+function nextImage() {
+    if (currentImageIndex < currentImages.length - 1) {
+        currentImageIndex++;
+        showImageOverlay();
+    }
+}
+// Go to previous image (keyboard or wheel)
+function previousImage() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+        showImageOverlay();
+    }
+}
+function generateAndPopulateSlides(slideInfo, startingSlideId) {
+    const presentationContainer = document.querySelector('.presentation-container');
+    const anchorElement = document.getElementById(`slide-${startingSlideId}`);
+    let currentSlideIndex = startingSlideId;
+    const totalItems = slideInfo.data.length;
+    const numSlides = Math.ceil(totalItems / slideInfo.itemsPerSlide);
+    for (let i = 0; i < numSlides; i++) {
+        const startIndex = i * slideInfo.itemsPerSlide;
+        const endIndex = Math.min(startIndex + slideInfo.itemsPerSlide, totalItems);
+        const slideElement = document.createElement('div');
+        slideElement.classList.add('slide');
+        slideElement.id = `slide-${currentSlideIndex}`;
+        const part = numSlides > 1 ? ` (Part ${i + 1})` : '';
+        slideElement.innerHTML = `
+            <div class="slide-header">
+                <h1 class="slide-title">${slideInfo.title}</h1>
+                <div class="slide-subtitle">${slideInfo.subtitle}${part}</div>
+            </div>
+            <div class="content-section">
+                <div class="${slideInfo.listClass}"></div>
+            </div>
+        `;
+        presentationContainer.insertBefore(slideElement, document.getElementById('slide-9'));
+        populateList(`#${slideElement.id} .${slideInfo.listClass}`, slideInfo.data, slideInfo.listClass, startIndex, endIndex);
+        currentSlideIndex++;
+    }
+    return currentSlideIndex;
+}
+document.addEventListener('DOMContentLoaded', function() {
+    let startingSlideId = 2;
+    // Process slides data array
+    mainData.slidesData.forEach((slideInfo, index) => {
+        // After generating Achievement slide (first slide), check if we need to add Not Completed KPIs
+        startingSlideId = generateAndPopulateSlides(slideInfo, startingSlideId);
+        // Insert Not Completed KPI slide after Achievement slide (first slide in slidesData)
+        if (index === 0) { // After first slide (Achievements)
+            if (mainData.notCompletedKPIS && Array.isArray(mainData.notCompletedKPIS) && mainData.notCompletedKPIS.length > 0) {
+                startingSlideId = generateAndPopulateSlides(
+                    {
+                        title: "Not Completed KPIs",
+                        subtitle: "Tasks that need attention",
+                        data: mainData.notCompletedKPIS,
+                        listClass: 'not-completed-list',
+                        itemsPerSlide: 20  // Can show more items in compact list format
+                    },
+                    startingSlideId
+                );
+            }
+        }
+    });
+    // Generate timeline slide from timelineData
+    startingSlideId = generateAndPopulateTimelineSlide(startingSlideId);
+    // Update the ID of the remaining thank you slide
+    const thankYouSlide = document.getElementById('slide-11');
+    if (thankYouSlide) thankYouSlide.id = `slide-${startingSlideId}`;
+    // Update total slides count
+    totalSlides = document.querySelectorAll('.slide').length;
+});
+// Function to create an item element
+function createItemElement(item, listClass) {
+    const itemElement = document.createElement('div');
+    
+    if (listClass === 'not-completed-list') {
+        itemElement.classList.add('not-completed-item');
+        itemElement.innerHTML = `
+            <p>${item.text}</p>
+            ${item.category ? `<span style="color: var(--text-secondary); font-size: 0.85rem; margin-left: auto;">[${item.category}]</span>` : ''}
+        `;
+    } else {
+        const isAchievement = listClass === 'achievement-list';
+        itemElement.classList.add(isAchievement ? 'achievement-item' : 'plan-item');
+        if (isAchievement && item.images && item.images.length > 0) {
+            itemElement.setAttribute('data-images', JSON.stringify(item.images));
+        }
+        itemElement.innerHTML = `
+            <p>${item.text}</p>
+            ${item.category ? `<span class="item-category">${item.category}</span>` : ''}
+        `;
+    }
+    return itemElement;
+}
+// Function to populate a list
+function populateList(containerSelector, data, listClass, startIndex, endIndex) {
+    const container = document.querySelector(containerSelector);
+    if (container) {
+        const fragment = document.createDocumentFragment();
+        data.slice(startIndex, endIndex).forEach(item => {
+            fragment.appendChild(createItemElement(item, containerSelector));
+        });
+        container.appendChild(fragment);
+    }
+}
+// Function to generate and populate timeline slide
+function generateAndPopulateTimelineSlide(startingSlideId) {
+    const presentationContainer = document.querySelector('.presentation-container');
+    const slideElement = document.createElement('div');
+    slideElement.classList.add('slide');
+    slideElement.id = `slide-${startingSlideId}`;
+    slideElement.innerHTML = `
+        <div class="slide-header">
+            <h1 class="slide-title">Project Timeline</h1>
+            <div class="slide-subtitle">Key milestones and deadlines</div>
+        </div>
+        <div class="content-section">
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-items-container"></div>
+            </div>
+        </div>
+    `;
+    // Insert the slide before the thank you slide (which has id 'slide-11')
+    const thankYouSlide = document.getElementById('slide-11');
+    if (thankYouSlide) {
+        presentationContainer.insertBefore(slideElement, thankYouSlide);
+    } else {
+        presentationContainer.appendChild(slideElement);
+    }
+    // Populate timeline items
+    populateTimelineItems(`#${slideElement.id} .timeline-items-container`, mainData.timelineData);
+    return startingSlideId + 1;
+}
+// Function to populate timeline items
+function populateTimelineItems(containerSelector, timelineData) {
+    const container = document.querySelector(containerSelector);
+    if (container) {
+        const fragment = document.createDocumentFragment();
+        timelineData.forEach(item => {
+            const timelineItem = document.createElement('div');
+            timelineItem.classList.add('timeline-item');
+            timelineItem.innerHTML = `
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">${item.date}</div>
+                <div class="timeline-content">${item.content}</div>
+            `;
+            fragment.appendChild(timelineItem);
+        });
+        container.appendChild(fragment);
+    }
+}
+// Function to populate thank you images
+function populateThankYouImages() {
+    const container = document.getElementById('thankYouImagesContainer');
+    if (container && mainData.teamMembersData && Array.isArray(mainData.teamMembersData)) {
+        container.innerHTML = ''; // Clear any existing content
+        mainData.teamMembersData.forEach(member => {
+            const img = document.createElement('img');
+            img.src = member.image;
+            img.alt = member.name;
+            container.appendChild(img);
+        });
+    }
+}
+// Initialize
+window.onload = init;
+</script>
+            // Mouse wheel slide control
+            let scrollCount = 0;
+            let lastScrollTime = 0;
+            function handleWheel(e) {
+                if (isAutoPlaying) stopAutoPlay();
+                e.preventDefault();
+                const now = Date.now();
+                // Reset count if scrolls are too far apart (>1 second gap)
+                if (now - lastScrollTime > 1000) {
+                    scrollCount = 0;
+                }
+                lastScrollTime = now;
+                // Increase scroll count
+                scrollCount++;
+                // Only change slide every 3 scrolls
+                if (scrollCount >= 2) {
+                    scrollCount = 0; // reset counter
+                    if (isOverlayActive) {
+                        if (e.deltaY > 0) nextImage();
+                        else previousImage();
+                    } else {
+                        if (e.deltaY > 0) nextSlide();
+                        else previousSlide();
+                    }
+                }
+            }
+            // Auto-play
+            function startAutoPlay() {
+                if (isAutoPlaying) return;
+                isAutoPlaying = true;
+                document.getElementById('autoPlayIndicator').classList.add('active');
+                autoPlayInterval = setInterval(() => {
+                    nextSlide();
+                }, 5000);
+            }
+            function stopAutoPlay() {
+                if (!isAutoPlaying) return;
+                isAutoPlaying = false;
+                document.getElementById('autoPlayIndicator').classList.remove('active');
+                if (autoPlayInterval) clearInterval(autoPlayInterval);
+            }
+            // ======================
+            // 🔹 IMAGE OVERLAY LOGIC
+            // ======================
+            function setupImageOverlay() {
+                const achievementItems = document.querySelectorAll('.achievement-item');
+                const imageOverlay = document.getElementById('imageOverlay');
+                const closeOverlay = document.getElementById('closeOverlay');
+                const overlayImage = document.getElementById('overlayImage');
+                const imageCounter = document.getElementById('imageCounter');
+                // Open overlay on item click
+                achievementItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const imagesData = item.getAttribute('data-images');
+                        if (imagesData) {
+                            try {
+                                currentImages = JSON.parse(imagesData);
+                                currentImageIndex = 0;
+                                showImageOverlay();
+                            } catch (e) {
+                                console.error('Error parsing images data:', e);
+                            }
+                        }
+                    });
+                });
+                // Close overlay
+                closeOverlay.addEventListener('click', closeImageOverlay);
+                // Close overlay when clicking outside the image
+                imageOverlay.addEventListener('click', (e) => {
+                    if (e.target === imageOverlay) {
+                        closeImageOverlay();
+                    }
+                });
+            }
+    </body>
+</html>

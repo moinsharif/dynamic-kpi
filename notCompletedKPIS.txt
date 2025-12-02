@@ -1,0 +1,7 @@
+Daily DB backup functionality --LMS-Market
+Application backup --LMS-Market
+Order revnue report --LMS-Market
+Dashboard Statistics --LMS-Market
+Identify Themeforest terms and condition  --LMS-Market
+Fixed Theme forest requirement  --LMS-Market
+Set project in theme forest.   --LMS-Market

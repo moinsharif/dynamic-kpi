@@ -1,0 +1,9 @@
+Daily DB backup functionality --LMS-Market
+Application backup --LMS-Market
+Dashboard Statistics --LMS-Market
+Identify Themeforest terms and condition  --LMS-Market
+Fixed Theme forest requirement  --LMS-Market
+Set project in theme forest.   --LMS-Market
+Furue Plan for the Clickup replacement --New Project
+Meeting Management and Work Report --New Project
+Daily Issue fixes --LMS

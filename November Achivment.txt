@@ -1,0 +1,25 @@
+Survey feedback --LMS
+Dashboard portal batch recommandation --LM
+Trainer evaluation and report generate--LM
+Learner/Trainer location tracking with filter, report generate.  --LMS
+Supervisor Signatrue collection for specific course --LMS
+Page builder with page block --LMS-Market
+Blog and forums --LMS-Market
+Graphical Application setup (App Installation) --LMS-Market
+Instructor revenue settings --LMS-Market
+Order revnue report --LMS-Market
+Daily Issue fixes --LMS
+Dashboard portal Role/Permission --Additional-LM
+Mandetory Trainings --Additional-Task
+Trainings Sector and Expertise --Additional-Task
+Trainer Directory with compliance document --Additional-Task
+User multiple location --Additional-Task
+Advance phlebotomy report export --Additional-Task
+Workplace agreement --Additional-Task
+Map pining system and preview with a range. --Additional-LMS
+Total task feedback by the assessor (filter by date) --Additional-Task
+Student ID Card, Mail template and UI desgin/update --Additional-Task
+Abandoned Checkout (SMS Issue Fixed) --Additional-General
+Google Sheet AppScript (Asignment) --Additional-General
+PTI Virus Issue --Additional-General
+Fake date issue fixed --Additional-General
