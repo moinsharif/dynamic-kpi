@@ -9,6 +9,7 @@ Graphical Application setup (App Installation) --LMS-Market
 Instructor revenue settings --LMS-Market
 Order revnue report --LMS-Market
 Daily Issue fixes --LMS
+Reed Automation --Automation LMS
 Dashboard portal Role/Permission --Additional-LM
 Mandetory Trainings --Additional-Task
 Trainings Sector and Expertise --Additional-Task

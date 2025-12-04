@@ -333,8 +333,8 @@ def find_all_matching_images(achievement_title, merged_files, threshold=0.5):
             if score >= threshold:
                 matching_files.append((filename, score))
     
-    # Sort by score (highest first) and return all matching files
-    matching_files.sort(key=lambda x: x[1], reverse=True)
+    # Sort by score (highest first), then by filename for consistent ordering
+    matching_files.sort(key=lambda x: (-x[1], x[0]))
     return matching_files
 
 
@@ -369,8 +369,9 @@ def insert_background_image(html_content, background_data):
     updated_content = re.sub(pattern, replacement, html_content)
     
     # Also update the background image in the body CSS if present
+    # Need to wrap the base64 data in url() properly with quotes
     body_pattern = r'(background:\s*linear-gradient[^;]*,\s*)url\([^)]*\)([^;]*;)'
-    body_replacement = r'\1' + background_data + r'\2'
+    body_replacement = r'\1url(\'' + background_data + r'\')\2'
     updated_content = re.sub(body_pattern, body_replacement, updated_content)
     
     return updated_content
@@ -380,6 +381,9 @@ def insert_achievement_images(html_content, merged_dir):
     """Insert base64 images into slidesData achievement items"""
     merged_files = [f for f in os.listdir(merged_dir) 
                     if f.endswith('.txt') and f != '00_merged_background.txt']
+    
+    # Sort merged files by name to ensure consistent ordering
+    merged_files.sort()
     
     # Pattern to match slidesData array and find achievement items
     pattern = r'(\s*"text":\s*")([^"]+)(",\s*"category":\s*"[^"]+",\s*"images":\s*)\[([^\]]*)\]'
@@ -394,7 +398,10 @@ def insert_achievement_images(html_content, merged_dir):
         
         if matching_files:
             all_images = []
-            for filename, score in matching_files:
+            # Sort matching files by filename to ensure ascending order
+            sorted_matching = sorted(matching_files, key=lambda x: x[0])
+            
+            for filename, score in sorted_matching:
                 filepath = os.path.join(merged_dir, filename)
                 images_data = read_merged_file(filepath)
                 
@@ -525,43 +532,50 @@ def main():
     # Find achievement and plans files dynamically
     achievements_file = find_file_with_pattern(script_dir, "achivment.txt")
     plans_file = find_file_with_pattern(script_dir, "plans.txt")
-    
+
+    # Extract months from both file names first
+    achievement_month = extract_month_from_filename(achievements_file)
+    plans_month = extract_month_from_filename(plans_file)
+
+    # Set output filename based on achievement month
+    if achievement_month:
+        output_file = os.path.join(script_dir, f"{achievement_month}-KPI.html")
+    else:
+        output_file = os.path.join(script_dir, "basic_slide_updated.html")
+
     # Use direct path for notCompletedKPIS.txt
     not_completed_file = os.path.join(script_dir, "notCompletedKPIS.txt")
-    
+
     print("=" * 70)
     print("SLIDE PROCESSING SCRIPT")
     print("=" * 70)
-    
+
     # Check if required files exist
     if not os.path.exists(html_file):
         print(f"❌ Error: HTML file not found at {html_file}")
         return
-    
+
     if not achievements_file or not os.path.exists(achievements_file):
         print(f"❌ Error: Achievements file not found (looking for '*Achivment.txt')")
         return
-    
+
     if not plans_file or not os.path.exists(plans_file):
         print(f"❌ Error: Plans file not found (looking for '*Plans.txt')")
         return
-    
+
     if not os.path.exists(img_dir):
         print(f"❌ Error: Images directory not found at {img_dir}")
         return
-    
+
     # TASK 1: Update HTML Content
     print("\n📝 TASK 1: Updating HTML content with achievements and plans...")
     print("-" * 70)
-    
-    # Extract months from both file names
-    achievement_month = extract_month_from_filename(achievements_file)
-    plans_month = extract_month_from_filename(plans_file)
     
     print(f"  Found achievements file: {os.path.basename(achievements_file)}")
     print(f"  Found plans file: {os.path.basename(plans_file)}")
     if achievement_month:
         print(f"  Detected achievement month: {achievement_month}")
+        print(f"  Output file will be: {achievement_month}-KPI.html")
     if plans_month:
         print(f"  Detected plans month: {plans_month}")
     
