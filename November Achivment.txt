@@ -11,7 +11,7 @@ Order revnue report --LMS-Market
 Daily Issue fixes --LMS
 Reed Automation --Automation LMS
 Dashboard portal Role/Permission --Additional-LM
-Mandetory Trainings --Additional-Task
+Mandatory Trainings --Additional-Task
 Trainings Sector and Expertise --Additional-Task
 Trainer Directory with compliance document --Additional-Task
 User multiple location --Additional-Task

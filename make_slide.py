@@ -306,33 +306,51 @@ def normalize_title(title):
     return title.lower()
 
 
-def find_all_matching_images(achievement_title, merged_files, threshold=0.5):
-    """Find all matching merged files for an achievement title"""
-    normalized_achievement = normalize_title(achievement_title)
+def normalize_filename(title):
+    """Normalize title for filename matching by replacing special characters with underscores"""
+    # Replace special characters with underscores
+    normalized = re.sub(r'[^\w\s]', '_', title)
+    # Replace multiple spaces with single space
+    normalized = re.sub(r'\s+', ' ', normalized)
+    # Remove leading/trailing spaces and underscores
+    normalized = normalized.strip(' _')
+    return normalized
+
+
+def find_all_matching_images(achievement_title, merged_files, threshold=0.9):
+    """Find all matching merged files for an achievement title using direct filename normalization"""
+    # Normalize achievement title for exact matching
+    normalized_achievement = normalize_filename(achievement_title)
     matching_files = []
-    
+
     for filename in merged_files:
         parts = filename.replace('.txt', '').split('_merged_', 1)
         if len(parts) == 2:
-            file_title = normalize_title(parts[1])
-            
-            score = similarity(normalized_achievement, file_title)
-            
-            # Boost score if file title is contained in achievement title
-            if file_title in normalized_achievement:
-                score = max(score, 0.85)
-            
-            # Boost score for exact word matches
-            achievement_words = set(normalized_achievement.split())
-            file_words = set(file_title.split())
-            common_words = achievement_words.intersection(file_words)
-            if common_words:
-                word_match_bonus = len(common_words) / max(len(achievement_words), len(file_words))
-                score = max(score, word_match_bonus * 0.9)
-            
+            file_title = parts[1]  # Use the original filename part after '_merged_'
+
+            # Normalize file title the same way
+            normalized_file_title = normalize_filename(file_title)
+
+            # First check for exact match after normalization
+            if normalized_achievement.lower() == normalized_file_title.lower():
+                matching_files.append((filename, 1.0))
+                continue
+
+            # Check if file title starts with the achievement title (for partial matches)
+            if normalized_file_title.lower().startswith(normalized_achievement.lower()):
+                matching_files.append((filename, 0.95))
+                continue
+
+            # Check if achievement title starts with the file title
+            if normalized_achievement.lower().startswith(normalized_file_title.lower()):
+                matching_files.append((filename, 0.95))
+                continue
+
+            # For very close matches (90%+ similarity)
+            score = similarity(normalized_achievement.lower(), normalized_file_title.lower())
             if score >= threshold:
                 matching_files.append((filename, score))
-    
+
     # Sort by score (highest first), then by filename for consistent ordering
     matching_files.sort(key=lambda x: (-x[1], x[0]))
     return matching_files
