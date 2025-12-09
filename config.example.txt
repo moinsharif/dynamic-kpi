@@ -1,0 +1,57 @@
+# LMS Team KPI Presentation Configuration
+# Copy this file to config.txt and edit as needed
+
+# ============================================================================
+# THEME COLORS
+# ============================================================================
+# Use hex color codes (e.g., #d5114a)
+# You can use online color pickers to find colors: https://htmlcolorcodes.com/
+
+PRIMARY_COLOR=#d5114a
+PRIMARY_LIGHT=#ff6b8b
+PRIMARY_DARK=#a00d38
+
+# Popular Color Schemes:
+# Blue:   PRIMARY_COLOR=#1e40af, PRIMARY_LIGHT=#3b82f6, PRIMARY_DARK=#1e3a8a
+# Green:  PRIMARY_COLOR=#15803d, PRIMARY_LIGHT=#22c55e, PRIMARY_DARK=#14532d
+# Purple: PRIMARY_COLOR=#7c3aed, PRIMARY_LIGHT=#a78bfa, PRIMARY_DARK=#5b21b6
+# Orange: PRIMARY_COLOR=#ea580c, PRIMARY_LIGHT=#fb923c, PRIMARY_DARK=#c2410c
+# Red:    PRIMARY_COLOR=#dc2626, PRIMARY_LIGHT=#ef4444, PRIMARY_DARK=#991b1b
+
+# ============================================================================
+# TEAM INFORMATION
+# ============================================================================
+
+# Short team name (appears in title and headers)
+TEAM_NAME=LMS Team
+
+# Full team name (appears in contact section)
+TEAM_FULL_NAME=LMS Development Team
+
+# ============================================================================
+# TEAM MEMBERS
+# ============================================================================
+# Separate multiple members with commas
+# You can add as many members as you want
+# Team member images should be named: TeamMember_01-01.jpg, TeamMember_02-01.jpg, etc.
+
+TEAM_MEMBERS=Fizul Haque,Samiul Islam,Moin Sharif
+
+# Examples:
+# TEAM_MEMBERS=Alice,Bob,Charlie
+# TEAM_MEMBERS=John Doe,Jane Smith,Mike Johnson,Sarah Williams
+
+# ============================================================================
+# CONTACT INFORMATION
+# ============================================================================
+
+CONTACT_EMAIL=info@orbittechinc.com
+
+# ============================================================================
+# NOTES
+# ============================================================================
+# - Lines starting with # are comments and will be ignored
+# - Empty lines are ignored
+# - Do not use quotes around values
+# - Color codes must start with # and be 6 characters (hex format)
+# - Team member names are case-sensitive

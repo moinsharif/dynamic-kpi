@@ -14,12 +14,13 @@ This is an interactive presentation system that displays the LMS Team's monthly 
 ### ⚡ Quick Start
 
 ```bash
-# 1. Write your tasks in text files
-# 2. Place images in images/ folder (matching task names)
-# 3. Run the Python script
+# 1. Edit config.txt (theme colors, team name, members)
+# 2. Write your tasks in text files
+# 3. Place images in images/ folder (matching task names)
+# 4. Run the Python script
 python make_slide.py
 
-# 4. Open the generated HTML file
+# 5. Open the generated HTML file
 # Open [Month]-KPI.html in your browser
 ```
 
@@ -128,7 +129,27 @@ The `basic_slide.html` file is a complete interactive presentation that:
 - Python 3.x
 - A modern web browser (Chrome, Firefox, Edge)
 
-### Step 1: Prepare Data
+### Step 1: Configure Your Presentation
+Edit `config.txt` to customize your presentation:
+
+```txt
+# Theme Colors (Hex color codes)
+PRIMARY_COLOR=#d5114a
+PRIMARY_LIGHT=#ff6b8b
+PRIMARY_DARK=#a00d38
+
+# Team Information
+TEAM_NAME=LMS Team
+TEAM_FULL_NAME=LMS Development Team
+
+# Team Members (separate with comma)
+TEAM_MEMBERS=Fizul Haque,Samiul Islam,Moin Sharif
+
+# Contact Information
+CONTACT_EMAIL=info@orbittechinc.com
+```
+
+### Step 2: Prepare Data
 1. Write your achievements list in `[Month] Achivment.txt`
 2. Write plans in `[Month] Plans.txt`
 3. Write incomplete tasks in `notCompletedKPIS.txt`
@@ -138,7 +159,7 @@ The `basic_slide.html` file is a complete interactive presentation that:
 Task name --Category
 ```
 
-### Step 2: Add Images
+### Step 3: Add Images
 Place your images in the `images/` folder. Name files like this:
 
 **Format:**
@@ -156,7 +177,7 @@ Dashboard portal batch recommandation-02.png
 
 **Special Note:** Replace special characters that cannot be used in filenames with underscores (_).
 
-### Step 3: Run Python Script
+### Step 4: Run Python Script
 ```bash
 python make_slide.py
 ```
@@ -166,7 +187,7 @@ This will:
 - Encode images
 - Create `[Month]-KPI.html` file
 
-### Step 4: Run Presentation
+### Step 5: Run Presentation
 1. Open the generated HTML file in your browser
 2. The presentation will start
 
@@ -284,6 +305,7 @@ project/
 │
 ├── basic_slide.html          # Main presentation file
 ├── make_slide.py             # Python script
+├── config.txt                # Configuration file (NEW!)
 ├── [Month] Achivment.txt     # Achievements list
 ├── [Month] Plans.txt         # Plans list
 ├── notCompletedKPIS.txt      # Incomplete tasks list
@@ -304,23 +326,45 @@ project/
 
 ## Customization
 
-### Change Colors
-Modify colors in the CSS `:root` section of `basic_slide.html`:
-```css
-:root {
-    --primary-color: #d5114a;      /* Primary color */
-    --primary-light: #ff6b8b;      /* Light color */
-    --primary-dark: #a00d38;       /* Dark color */
-}
+### 🎨 Easy Customization via config.txt
+
+The easiest way to customize your presentation is by editing `config.txt`:
+
+#### Change Theme Colors
+```txt
+PRIMARY_COLOR=#d5114a      # Main theme color
+PRIMARY_LIGHT=#ff6b8b      # Light variant
+PRIMARY_DARK=#a00d38       # Dark variant
 ```
 
-### Items Per Slide
+**Popular Color Schemes:**
+- **Blue Theme**: `#1e40af`, `#3b82f6`, `#1e3a8a`
+- **Green Theme**: `#15803d`, `#22c55e`, `#14532d`
+- **Purple Theme**: `#7c3aed`, `#a78bfa`, `#5b21b6`
+- **Orange Theme**: `#ea580c`, `#fb923c`, `#c2410c`
+
+#### Change Team Information
+```txt
+TEAM_NAME=Your Team Name
+TEAM_FULL_NAME=Your Full Team Name
+TEAM_MEMBERS=Member 1,Member 2,Member 3,Member 4
+CONTACT_EMAIL=your.email@example.com
+```
+
+**Notes:**
+- You can add as many team members as you want (separate with commas)
+- Team member images should be named: `TeamMember_01-01.jpg`, `TeamMember_02-01.jpg`, etc.
+- If you have more members than images, placeholders will be used
+
+### Advanced Customization
+
+#### Items Per Slide
 Change `itemsPerSlide` in `make_slide.py`:
 ```python
 "itemsPerSlide": 6,  # 6 items per slide
 ```
 
-### Auto-Play Duration
+#### Auto-Play Duration
 In the JavaScript section of `basic_slide.html`:
 ```javascript
 autoPlayInterval = setInterval(() => {
@@ -400,6 +444,33 @@ After running the Python script, check the console:
 If you see `✗ No match found`, fix the filename.
 
 ## Frequently Asked Questions (FAQ)
+
+### ❓ How do I change the theme color?
+
+**Answer:** Edit `config.txt` and change the `PRIMARY_COLOR`, `PRIMARY_LIGHT`, and `PRIMARY_DARK` values.
+
+```txt
+PRIMARY_COLOR=#1e40af    # Change to your preferred color
+PRIMARY_LIGHT=#3b82f6
+PRIMARY_DARK=#1e3a8a
+```
+
+### ❓ How do I add or remove team members?
+
+**Answer:** Edit `config.txt` and modify the `TEAM_MEMBERS` line. Separate names with commas.
+
+```txt
+TEAM_MEMBERS=Alice,Bob,Charlie,David
+```
+
+### ❓ How do I change the team name?
+
+**Answer:** Edit `config.txt` and change `TEAM_NAME` and `TEAM_FULL_NAME`.
+
+```txt
+TEAM_NAME=Marketing Team
+TEAM_FULL_NAME=Marketing Department
+```
 
 ### ❓ How do I fix image filenames?
 

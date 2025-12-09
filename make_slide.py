@@ -5,6 +5,7 @@ Combines three tasks:
 1. Update HTML content with achievements and plans from text files
 2. Encode images to base64 and merge them
 3. Insert encoded images into HTML
+4. Apply custom configuration (theme colors, team members, etc.)
 """
 
 import os
@@ -14,6 +15,55 @@ import re
 import shutil
 from collections import defaultdict
 from difflib import SequenceMatcher
+
+
+# ============================================================================
+# CONFIGURATION PARSER
+# ============================================================================
+
+def parse_config_file(filepath):
+    """Parse configuration file and return config dictionary"""
+    config = {
+        'PRIMARY_COLOR': '#d5114a',
+        'PRIMARY_LIGHT': '#ff6b8b',
+        'PRIMARY_DARK': '#a00d38',
+        'TEAM_NAME': 'LMS Team',
+        'TEAM_FULL_NAME': 'LMS Development Team',
+        'TEAM_MEMBERS': ['Fizul Haque', 'Samiul Islam', 'Moin Sharif'],
+        'CONTACT_EMAIL': 'info@orbittechinc.com'
+    }
+    
+    if not os.path.exists(filepath):
+        print(f"  ⚠️  Config file not found: {filepath}")
+        print(f"  ℹ️  Using default configuration")
+        return config
+    
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                # Skip comments and empty lines
+                if not line or line.startswith('#'):
+                    continue
+                
+                # Parse key=value pairs
+                if '=' in line:
+                    key, value = line.split('=', 1)
+                    key = key.strip()
+                    value = value.strip()
+                    
+                    # Handle team members (comma-separated)
+                    if key == 'TEAM_MEMBERS':
+                        config[key] = [member.strip() for member in value.split(',')]
+                    else:
+                        config[key] = value
+        
+        print(f"  ✓ Configuration loaded from {filepath}")
+        return config
+    except Exception as e:
+        print(f"  ⚠️  Error reading config file: {e}")
+        print(f"  ℹ️  Using default configuration")
+        return config
 
 
 # ============================================================================
@@ -424,6 +474,69 @@ def insert_background_image(html_content, background_data):
     return updated_content
 
 
+def apply_theme_colors(html_content, config):
+    """Apply theme colors from config to HTML"""
+    # Replace CSS color variables
+    html_content = re.sub(
+        r'(--primary-color:\s*)#[0-9a-fA-F]{6}',
+        r'\1' + config['PRIMARY_COLOR'],
+        html_content
+    )
+    html_content = re.sub(
+        r'(--primary-light:\s*)#[0-9a-fA-F]{6}',
+        r'\1' + config['PRIMARY_LIGHT'],
+        html_content
+    )
+    html_content = re.sub(
+        r'(--primary-dark:\s*)#[0-9a-fA-F]{6}',
+        r'\1' + config['PRIMARY_DARK'],
+        html_content
+    )
+    
+    return html_content
+
+
+def apply_team_info(html_content, config):
+    """Apply team information from config to HTML"""
+    team_members = config['TEAM_MEMBERS']
+    
+    # Create team members data structure for JavaScript
+    team_members_data = [
+        {"name": member, "image": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="}
+        for member in team_members
+    ]
+    
+    # Replace team name in title
+    html_content = re.sub(
+        r'(<title>)[^<]*(Monthly KPI[^<]*</title>)',
+        r'\1' + config['TEAM_NAME'] + r' \2',
+        html_content
+    )
+    
+    # Replace team name in cover slide
+    html_content = re.sub(
+        r'(<h3 class="section-title">For the )[^<]*(</h3>)',
+        r'\1' + config['TEAM_NAME'] + r'\2',
+        html_content
+    )
+    
+    # Replace contact email
+    html_content = re.sub(
+        r'(Questions\? Contact us at )[^\s<]+',
+        r'\1' + config['CONTACT_EMAIL'],
+        html_content
+    )
+    
+    # Replace team full name in contact section
+    html_content = re.sub(
+        r'(<p>)[^<]*(Team</p>)',
+        r'\1' + config['TEAM_FULL_NAME'] + r'\2',
+        html_content
+    )
+    
+    return html_content
+
+
 def insert_achievement_images(html_content, merged_dir):
     """Insert base64 images into slidesData achievement items"""
     merged_files = [f for f in os.listdir(merged_dir) 
@@ -468,17 +581,15 @@ def insert_achievement_images(html_content, merged_dir):
     updated_content = re.sub(pattern, replace_images, html_content, flags=re.DOTALL)
     return updated_content
 
-def insert_team_member_images(html_content, merged_dir):
+def insert_team_member_images(html_content, merged_dir, config):
     """Insert team member images into thank you page"""
+    team_members = config['TEAM_MEMBERS']
+    
     # Look for team member merged files (TeamMember_01, TeamMember_02, TeamMember_03)
     team_member_files = []
     for filename in os.listdir(merged_dir):
         if filename.endswith('.txt') and 'teammember' in filename.lower():
             team_member_files.append(filename)
-    
-    if not team_member_files:
-        print("  ⚠️  No team member images file found")
-        return html_content
     
     # Sort files to ensure correct order
     team_member_files.sort()
@@ -491,16 +602,20 @@ def insert_team_member_images(html_content, merged_dir):
         if images_data and len(images_data) > 0:
             team_images.append(images_data[0])  # Take first image from each file
     
-    if len(team_images) < 3:
-        print(f"  ⚠️  Not enough team member images found (need 3, got {len(team_images)})")
-        return html_content
-    
     # Create team member data structure
-    team_members_data = [
-        {"name": "Fizul Haque", "image": team_images[0]},
-        {"name": "Samiul Islam", "image": team_images[1]},
-        {"name": "Moin Sharif", "image": team_images[2]}
-    ]
+    team_members_data = []
+    for i, member_name in enumerate(team_members):
+        if i < len(team_images):
+            # Use actual image if available
+            team_members_data.append({"name": member_name, "image": team_images[i]})
+        else:
+            # Use placeholder if no image available
+            placeholder = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDgwMCI+PHBhdGggZmlsbD0iI2M2ZmVmZiIgZD0iTTAgMEgxMjAwVjgwMEgwWiIvPjwvc3ZnPg=="
+            team_members_data.append({"name": member_name, "image": placeholder})
+    
+    if not team_members_data:
+        print("  ⚠️  No team members configured")
+        return html_content
 
     # Convert to JavaScript format
     team_members_js = json.dumps(team_members_data, indent=4, ensure_ascii=False)
@@ -510,7 +625,7 @@ def insert_team_member_images(html_content, merged_dir):
     replacement = f'\\1{team_members_js}'
     html_content = re.sub(pattern, replacement, html_content, flags=re.DOTALL)
     
-    print(f"  ✓ Inserted {len(team_images)} team member images")
+    print(f"  ✓ Inserted {len(team_members_data)} team member(s): {', '.join(team_members)}")
     
     return html_content
 
@@ -574,8 +689,9 @@ def main():
     
     # File paths
     html_file = os.path.join(script_dir, "basic_slide.html")
-    img_dir = os.path.join(script_dir, "images")  # Changed from "img" to "images"
+    img_dir = os.path.join(script_dir, "images")
     merged_dir = os.path.join(script_dir, "merged")
+    config_file = os.path.join(script_dir, "config.txt")
     output_file = os.path.join(script_dir, "basic_slide_updated.html")
     
     # Find achievement and plans files dynamically
@@ -598,6 +714,15 @@ def main():
     print("=" * 70)
     print("SLIDE PROCESSING SCRIPT")
     print("=" * 70)
+    
+    # Load configuration
+    print("\n📋 LOADING CONFIGURATION...")
+    print("-" * 70)
+    config = parse_config_file(config_file)
+    print(f"  Theme Color: {config['PRIMARY_COLOR']}")
+    print(f"  Team Name: {config['TEAM_NAME']}")
+    print(f"  Team Members: {', '.join(config['TEAM_MEMBERS'])}")
+    print(f"  Contact Email: {config['CONTACT_EMAIL']}")
 
     # Check if required files exist
     if not os.path.exists(html_file):
@@ -658,6 +783,15 @@ def main():
     if not_completed_items:
         html_content = update_not_completed_kpis(html_content, not_completed_items)
     
+    # Apply configuration
+    print("\n🎨 APPLYING CONFIGURATION...")
+    print("-" * 70)
+    html_content = apply_theme_colors(html_content, config)
+    print(f"  ✓ Theme colors applied")
+    
+    html_content = apply_team_info(html_content, config)
+    print(f"  ✓ Team information applied")
+    
     print("  ✓ HTML content updated")
     if achievement_month:
         print(f"  ✓ Achievement title updated to: {achievement_month} Achievements")
@@ -700,7 +834,7 @@ def main():
         print("  ✓ Achievement images inserted")
         
         # Insert team member images
-        html_content = insert_team_member_images(html_content, merged_dir)
+        html_content = insert_team_member_images(html_content, merged_dir, config)
     else:
         print("  ⚠️  Merged directory not found, skipping image insertion")
     

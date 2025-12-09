@@ -1,0 +1,17 @@
+# LMS Team KPI Presentation Configuration
+# Edit this file to customize your presentation
+
+# Theme Colors (Hex color codes)
+PRIMARY_COLOR=#d5114a
+PRIMARY_LIGHT=#ff6b8b
+PRIMARY_DARK=#a00d38
+
+# Team Information
+TEAM_NAME=LMS Team
+TEAM_FULL_NAME=LMS Development Team
+
+# Team Members (separate with comma)
+TEAM_MEMBERS=Fizul Haque,Samiul Islam,Moin Sharif
+
+# Contact Information
+CONTACT_EMAIL=info@orbittechinc.com
