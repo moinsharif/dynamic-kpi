@@ -216,19 +216,8 @@ def encode_images_in_directory(directory):
             
             all_image_files.append(image_file)
     
-    # Sort files by numerical prefix
-    def get_sort_key(filename):
-        parts = filename.split('_', 2)
-        if len(parts) >= 2:
-            try:
-                main_num = int(parts[0])
-                sub_num = int(parts[1])
-                return (main_num, sub_num)
-            except ValueError:
-                return (0, 0)
-        return (0, 0)
-    
-    all_image_files.sort(key=get_sort_key)
+    # Sort files alphabetically (natural sorting)
+    all_image_files.sort()
     
     # Process files in sorted order
     for image_file in all_image_files:
@@ -243,27 +232,23 @@ def encode_images_in_directory(directory):
     return encoded_files
 
 
-def extract_title_and_number(filename):
-    """Extract the number prefix and title from filename"""
-    parts = filename.split('_', 2)
-    if len(parts) >= 3:
-        number = parts[0]
-        title = parts[2].replace('.txt', '')
-        return number, title
-    return "00", filename.replace('.txt', '')
+def extract_title_from_filename(filename):
+    """Extract the title from filename (remove -01, -02 etc. suffix and extension)"""
+    # Remove extension first
+    name_without_ext = filename.replace('.txt', '')
+    # Remove the -01, -02 etc. suffix
+    parts = name_without_ext.rsplit('-', 1)
+    if len(parts) == 2 and parts[1].isdigit():
+        return parts[0]
+    return name_without_ext
 
 
 def merge_files(encoded_files, directory):
     """Group files by title and merge their content into JSON arrays"""
     title_groups = defaultdict(list)
-    file_info = {}
     
     for name_without_ext, encoded_data in encoded_files:
-        number, title = extract_title_and_number(name_without_ext + ".txt")
-        
-        if title not in file_info:
-            file_info[title] = number
-        
+        title = extract_title_from_filename(name_without_ext + ".txt")
         title_groups[title].append(encoded_data)
     
     # Create merged folder
@@ -273,8 +258,7 @@ def merge_files(encoded_files, directory):
     # Create merged files
     for title, content_list in title_groups.items():
         if content_list:
-            number = file_info[title]
-            new_filename = f"{number}_merged_{title}.txt"
+            new_filename = f"{title}.txt"
             new_filepath = os.path.join(merged_folder, new_filename)
             
             json_content = json.dumps(content_list, indent=2)
@@ -294,62 +278,108 @@ def similarity(a, b):
     return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
 
-def normalize_title(title):
-    """Normalize title for better matching"""
-    # Remove common punctuation and replace with space
-    title = re.sub(r'[_\(\)/\-\,\.\:]', ' ', title)
-    # Remove extra spaces
-    title = re.sub(r'\s+', ' ', title).strip()
-    # Handle common variations
-    title = title.replace('desgin', 'design').replace('recommandation', 'recommendation')
-    title = title.replace('Signatrue', 'Signature').replace('revnue', 'revenue')
-    return title.lower()
-
-
-def normalize_filename(title):
-    """Normalize title for filename matching by replacing special characters with underscores"""
-    # Replace special characters with underscores
-    normalized = re.sub(r'[^\w\s]', '_', title)
+def normalize_for_matching(text):
+    """Normalize text for matching by converting special characters to underscores"""
+    # Convert to lowercase
+    text = text.lower()
+    # Replace special characters that are not allowed in filenames with underscores
+    # Windows/Linux disallowed: < > : " / \ | ? *
+    # We'll also handle other punctuation
+    text = text.replace('/', '_')
+    text = text.replace('\\', '_')
+    text = text.replace(':', '_')
+    text = text.replace('*', '_')
+    text = text.replace('?', '_')
+    text = text.replace('"', '_')
+    text = text.replace('<', '_')
+    text = text.replace('>', '_')
+    text = text.replace('|', '_')
+    text = text.replace('(', '_')
+    text = text.replace(')', '_')
+    text = text.replace('[', '_')
+    text = text.replace(']', '_')
+    text = text.replace(',', '_')
+    text = text.replace('.', '_')
+    text = text.replace(';', '_')
+    text = text.replace('!', '_')
+    text = text.replace('@', '_')
+    text = text.replace('#', '_')
+    text = text.replace('$', '_')
+    text = text.replace('%', '_')
+    text = text.replace('^', '_')
+    text = text.replace('&', '_')
+    text = text.replace('+', '_')
+    text = text.replace('=', '_')
+    text = text.replace('{', '_')
+    text = text.replace('}', '_')
+    text = text.replace('`', '_')
+    text = text.replace('~', '_')
+    
+    # Replace multiple underscores with single underscore
+    text = re.sub(r'_+', '_', text)
     # Replace multiple spaces with single space
-    normalized = re.sub(r'\s+', ' ', normalized)
+    text = re.sub(r'\s+', ' ', text)
     # Remove leading/trailing spaces and underscores
-    normalized = normalized.strip(' _')
-    return normalized
+    text = text.strip(' _')
+    
+    return text
 
 
-def find_all_matching_images(achievement_title, merged_files, threshold=0.9):
-    """Find all matching merged files for an achievement title using direct filename normalization"""
-    # Normalize achievement title for exact matching
-    normalized_achievement = normalize_filename(achievement_title)
+def suggest_filename(task_name):
+    """Suggest correct filename for a task"""
+    # Keep original case for display
+    suggested = task_name
+    # Replace special characters
+    suggested = suggested.replace('/', '_')
+    suggested = suggested.replace('\\', '_')
+    suggested = suggested.replace(':', '_')
+    suggested = suggested.replace('*', '_')
+    suggested = suggested.replace('?', '_')
+    suggested = suggested.replace('"', '_')
+    suggested = suggested.replace('<', '_')
+    suggested = suggested.replace('>', '_')
+    suggested = suggested.replace('|', '_')
+    suggested = suggested.replace(',', '_')
+    
+    # Clean up multiple underscores
+    suggested = re.sub(r'_+', '_', suggested)
+    suggested = suggested.strip(' _')
+    
+    return f"{suggested}-01.png"
+
+
+def find_all_matching_images(achievement_title, merged_files, threshold=0.85):
+    """Find all matching merged files for an achievement title"""
+    # Normalize achievement title
+    normalized_achievement = normalize_for_matching(achievement_title)
     matching_files = []
 
     for filename in merged_files:
-        parts = filename.replace('.txt', '').split('_merged_', 1)
-        if len(parts) == 2:
-            file_title = parts[1]  # Use the original filename part after '_merged_'
+        # Remove .txt extension
+        file_title = filename.replace('.txt', '')
+        
+        # Normalize file title the same way
+        normalized_file_title = normalize_for_matching(file_title)
 
-            # Normalize file title the same way
-            normalized_file_title = normalize_filename(file_title)
+        # Check for exact match
+        if normalized_achievement == normalized_file_title:
+            matching_files.append((filename, 1.0))
+            continue
 
-            # First check for exact match after normalization
-            if normalized_achievement.lower() == normalized_file_title.lower():
-                matching_files.append((filename, 1.0))
-                continue
+        # Check if file title starts with the achievement title
+        if normalized_file_title.startswith(normalized_achievement):
+            matching_files.append((filename, 0.95))
+            continue
 
-            # Check if file title starts with the achievement title (for partial matches)
-            if normalized_file_title.lower().startswith(normalized_achievement.lower()):
-                matching_files.append((filename, 0.95))
-                continue
+        # Check if achievement title starts with the file title
+        if normalized_achievement.startswith(normalized_file_title):
+            matching_files.append((filename, 0.95))
+            continue
 
-            # Check if achievement title starts with the file title
-            if normalized_achievement.lower().startswith(normalized_file_title.lower()):
-                matching_files.append((filename, 0.95))
-                continue
-
-            # For very close matches (90%+ similarity)
-            score = similarity(normalized_achievement.lower(), normalized_file_title.lower())
-            if score >= threshold:
-                matching_files.append((filename, score))
+        # For close matches using similarity ratio
+        score = similarity(normalized_achievement, normalized_file_title)
+        if score >= threshold:
+            matching_files.append((filename, score))
 
     # Sort by score (highest first), then by filename for consistent ordering
     matching_files.sort(key=lambda x: (-x[1], x[0]))
@@ -387,7 +417,6 @@ def insert_background_image(html_content, background_data):
     updated_content = re.sub(pattern, replacement, html_content)
     
     # Also update the background image in the body CSS if present
-    # Need to wrap the base64 data in url() properly with quotes
     body_pattern = r'(background:\s*linear-gradient[^;]*,\s*)url\([^)]*\)([^;]*;)'
     body_replacement = r'\1url(\'' + background_data + r'\')\2'
     updated_content = re.sub(body_pattern, body_replacement, updated_content)
@@ -398,7 +427,7 @@ def insert_background_image(html_content, background_data):
 def insert_achievement_images(html_content, merged_dir):
     """Insert base64 images into slidesData achievement items"""
     merged_files = [f for f in os.listdir(merged_dir) 
-                    if f.endswith('.txt') and f != '00_merged_background.txt']
+                    if f.endswith('.txt') and f != 'background.txt']
     
     # Sort merged files by name to ensure consistent ordering
     merged_files.sort()
@@ -431,7 +460,9 @@ def insert_achievement_images(html_content, merged_dir):
                 images_json = json.dumps(all_images)
                 return f'{prefix}{title}{suffix}{images_json}'
         
+        suggested = suggest_filename(title)
         print(f"  ✗ No match found for '{title}'")
+        print(f"     Suggested filename: {suggested}")
         return match.group(0)
     
     updated_content = re.sub(pattern, replace_images, html_content, flags=re.DOTALL)
@@ -439,17 +470,17 @@ def insert_achievement_images(html_content, merged_dir):
 
 def insert_team_member_images(html_content, merged_dir):
     """Insert team member images into thank you page"""
-    # Look for all team member merged files
+    # Look for team member merged files (TeamMember_01, TeamMember_02, TeamMember_03)
     team_member_files = []
     for filename in os.listdir(merged_dir):
-        if filename.endswith('.txt') and 'TeamMember' in filename:
+        if filename.endswith('.txt') and 'teammember' in filename.lower():
             team_member_files.append(filename)
     
     if not team_member_files:
         print("  ⚠️  No team member images file found")
         return html_content
     
-    # Sort files to ensure correct order (01, 02, 03)
+    # Sort files to ensure correct order
     team_member_files.sort()
     
     # Read all team member images
@@ -474,7 +505,7 @@ def insert_team_member_images(html_content, merged_dir):
     # Convert to JavaScript format
     team_members_js = json.dumps(team_members_data, indent=4, ensure_ascii=False)
 
-    # Replace mainData.teamMembersData array - more precise pattern
+    # Replace mainData.teamMembersData array
     pattern = r'(teamMembersData:\s*)\[[^\]]*\]'
     replacement = f'\\1{team_members_js}'
     html_content = re.sub(pattern, replacement, html_content, flags=re.DOTALL)
@@ -655,7 +686,7 @@ def main():
     
     if os.path.exists(merged_dir):
         # Insert background image
-        background_file = os.path.join(merged_dir, "00_merged_background.txt")
+        background_file = os.path.join(merged_dir, "background.txt")
         if os.path.exists(background_file):
             background_data = read_merged_file(background_file)
             if background_data and len(background_data) > 0:
@@ -708,6 +739,23 @@ def main():
     print("  • Team member images load properly")
     print("  • Achievement images are clickable")
     print("  • Merged folder cleaned up automatically")
+    print("\n" + "=" * 70)
+    print("📝 IMPORTANT: Image File Naming Rules")
+    print("=" * 70)
+    print("\nImage files MUST match task names exactly!")
+    print("\nExample:")
+    print("  Task: 'Survey feedback'")
+    print("  File: 'Survey feedback-01.png' ✅")
+    print("\nSpecial characters must be replaced with underscore (_):")
+    print("  Task: 'Learner/Trainer location'")
+    print("  File: 'Learner_Trainer location-01.png' ✅")
+    print("\nCommon replacements:")
+    print("  / → _  (slash)")
+    print("  , → _  (comma)")
+    print("  : → _  (colon)")
+    print("  * → _  (asterisk)")
+    print("  ? → _  (question mark)")
+    print("\nCheck console output above for '✗ No match found' messages.")
     print("\nYou can now review the file and replace basic_slide.html if everything looks good.")
 
 

@@ -1,7 +1,7 @@
 Survey feedback --LMS
 Dashboard portal batch recommandation --LM
-Trainer evaluation and report generate--LM
-Learner/Trainer location tracking with filter, report generate.  --LMS
+Trainer evaluation and report generate --LM
+Learner/Trainer location tracking with filter, report generate --LMS
 Supervisor Signatrue collection for specific course --LMS
 Page builder with page block --LMS-Market
 Blog and forums --LMS-Market
