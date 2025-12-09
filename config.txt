@@ -1,17 +1,89 @@
+# ============================================================================
 # LMS Team KPI Presentation Configuration
+# ============================================================================
 # Edit this file to customize your presentation
+# Lines starting with # are comments and will be ignored
 
-# Theme Colors (Hex color codes)
-PRIMARY_COLOR=#d5114a
-PRIMARY_LIGHT=#ff6b8b
-PRIMARY_DARK=#a00d38
+# ============================================================================
+# 🎨 THEME SELECTION (Choose 1-10)
+# ============================================================================
+# Simply change the number to switch themes instantly!
+# Each theme has 3 perfectly coordinated colors
 
-# Team Information
+THEME=6
+
+# ┌────┬─────────────────────┬──────────┬──────────┬──────────┬─────────────────┐
+# │ #  │ Theme Name          │ Primary  │ Light    │ Dark     │ Best For        │
+# ├────┼─────────────────────┼──────────┼──────────┼──────────┼─────────────────┤
+# │ 1  │ Pink/Rose (Default) │ #d5114a  │ #ff6b8b  │ #a00d38  │ Creative teams  │
+# │ 2  │ Blue Ocean          │ #1e40af  │ #3b82f6  │ #1e3a8a  │ Corporate       │
+# │ 3  │ Green Forest        │ #15803d  │ #22c55e  │ #14532d  │ Eco-friendly    │
+# │ 4  │ Purple Dream        │ #7c3aed  │ #a78bfa  │ #5b21b6  │ Premium brands  │
+# │ 5  │ Orange Sunset       │ #ea580c  │ #fb923c  │ #c2410c  │ Friendly teams  │
+# │ 6  │ Red Passion         │ #dc2626  │ #ef4444  │ #991b1b  │ Dynamic         │
+# │ 7  │ Teal Wave           │ #0d9488  │ #14b8a6  │ #115e59  │ Tech companies  │
+# │ 8  │ Indigo Night        │ #4f46e5  │ #6366f1  │ #3730a3  │ Innovative      │
+# │ 9  │ Amber Gold          │ #d97706  │ #f59e0b  │ #92400e  │ Financial       │
+# │ 10 │ Emerald Luxury      │ #059669  │ #10b981  │ #065f46  │ High-end        │
+# └────┴─────────────────────┴──────────┴──────────┴──────────┴─────────────────┘
+
+# Examples:
+# THEME=2    # Blue Ocean - Professional look
+# THEME=5    # Orange Sunset - Warm and friendly
+# THEME=10   # Emerald Luxury - Elegant and refined
+
+# ============================================================================
+# 🎨 ADVANCED: Custom Colors (Optional)
+# ============================================================================
+# Want specific colors? Uncomment and edit these lines:
+# Note: Custom colors will override the THEME setting above
+
+# PRIMARY_COLOR=#d5114a
+# PRIMARY_LIGHT=#ff6b8b
+# PRIMARY_DARK=#a00d38
+
+# ============================================================================
+# 👥 TEAM INFORMATION
+# ============================================================================
+
+# Short team name (appears in title and headers)
 TEAM_NAME=LMS Team
+
+# Full team name (appears in contact section)
 TEAM_FULL_NAME=LMS Development Team
 
-# Team Members (separate with comma)
+# ============================================================================
+# 👤 TEAM MEMBERS
+# ============================================================================
+# Separate multiple members with commas
+# You can add as many members as you want!
+# Team member images should be named: TeamMember_01-01.jpg, TeamMember_02-01.jpg, etc.
+
 TEAM_MEMBERS=Fizul Haque,Samiul Islam,Moin Sharif
 
-# Contact Information
+# Examples:
+# TEAM_MEMBERS=Alice,Bob,Charlie
+# TEAM_MEMBERS=John Doe,Jane Smith,Mike Johnson,Sarah Williams,David Brown
+
+# ============================================================================
+# 📧 CONTACT INFORMATION
+# ============================================================================
+
 CONTACT_EMAIL=info@orbittechinc.com
+
+# ============================================================================
+# 📝 QUICK TIPS
+# ============================================================================
+# 1. Change THEME number (1-10) to instantly change colors
+# 2. Add/remove team members by editing TEAM_MEMBERS line
+# 3. Update TEAM_NAME to change your team's name
+# 4. Save this file and run: python make_slide.py
+# 5. That's it! Your presentation is ready 🎉
+
+# ============================================================================
+# ⚠️ IMPORTANT NOTES
+# ============================================================================
+# - Do NOT use quotes around values
+# - Color codes must start with # and be 6 characters (hex format)
+# - Team member names are case-sensitive
+# - Empty lines and comments (lines starting with #) are ignored

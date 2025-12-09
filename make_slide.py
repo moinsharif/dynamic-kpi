@@ -21,9 +21,75 @@ from difflib import SequenceMatcher
 # CONFIGURATION PARSER
 # ============================================================================
 
+# Predefined theme colors
+THEMES = {
+    1: {
+        'name': 'Pink/Rose (Default)',
+        'PRIMARY_COLOR': '#d5114a',
+        'PRIMARY_LIGHT': '#ff6b8b',
+        'PRIMARY_DARK': '#a00d38'
+    },
+    2: {
+        'name': 'Blue Ocean',
+        'PRIMARY_COLOR': '#1e40af',
+        'PRIMARY_LIGHT': '#3b82f6',
+        'PRIMARY_DARK': '#1e3a8a'
+    },
+    3: {
+        'name': 'Green Forest',
+        'PRIMARY_COLOR': '#15803d',
+        'PRIMARY_LIGHT': '#22c55e',
+        'PRIMARY_DARK': '#14532d'
+    },
+    4: {
+        'name': 'Purple Dream',
+        'PRIMARY_COLOR': '#7c3aed',
+        'PRIMARY_LIGHT': '#a78bfa',
+        'PRIMARY_DARK': '#5b21b6'
+    },
+    5: {
+        'name': 'Orange Sunset',
+        'PRIMARY_COLOR': '#ea580c',
+        'PRIMARY_LIGHT': '#fb923c',
+        'PRIMARY_DARK': '#c2410c'
+    },
+    6: {
+        'name': 'Red Passion',
+        'PRIMARY_COLOR': '#dc2626',
+        'PRIMARY_LIGHT': '#ef4444',
+        'PRIMARY_DARK': '#991b1b'
+    },
+    7: {
+        'name': 'Teal Wave',
+        'PRIMARY_COLOR': '#0d9488',
+        'PRIMARY_LIGHT': '#14b8a6',
+        'PRIMARY_DARK': '#115e59'
+    },
+    8: {
+        'name': 'Indigo Night',
+        'PRIMARY_COLOR': '#4f46e5',
+        'PRIMARY_LIGHT': '#6366f1',
+        'PRIMARY_DARK': '#3730a3'
+    },
+    9: {
+        'name': 'Amber Gold',
+        'PRIMARY_COLOR': '#d97706',
+        'PRIMARY_LIGHT': '#f59e0b',
+        'PRIMARY_DARK': '#92400e'
+    },
+    10: {
+        'name': 'Emerald Luxury',
+        'PRIMARY_COLOR': '#059669',
+        'PRIMARY_LIGHT': '#10b981',
+        'PRIMARY_DARK': '#065f46'
+    }
+}
+
+
 def parse_config_file(filepath):
     """Parse configuration file and return config dictionary"""
     config = {
+        'THEME': 1,
         'PRIMARY_COLOR': '#d5114a',
         'PRIMARY_LIGHT': '#ff6b8b',
         'PRIMARY_DARK': '#a00d38',
@@ -55,14 +121,41 @@ def parse_config_file(filepath):
                     # Handle team members (comma-separated)
                     if key == 'TEAM_MEMBERS':
                         config[key] = [member.strip() for member in value.split(',')]
+                    # Handle theme number
+                    elif key == 'THEME':
+                        try:
+                            theme_num = int(value)
+                            if 1 <= theme_num <= 10:
+                                config['THEME'] = theme_num
+                                # Apply theme colors
+                                theme = THEMES[theme_num]
+                                config['PRIMARY_COLOR'] = theme['PRIMARY_COLOR']
+                                config['PRIMARY_LIGHT'] = theme['PRIMARY_LIGHT']
+                                config['PRIMARY_DARK'] = theme['PRIMARY_DARK']
+                                config['THEME_NAME'] = theme['name']
+                            else:
+                                print(f"  ⚠️  Invalid theme number: {theme_num}. Using default theme.")
+                        except ValueError:
+                            print(f"  ⚠️  Invalid theme value: {value}. Using default theme.")
                     else:
                         config[key] = value
         
+        # If custom colors are specified, they override theme colors
+        # This allows advanced users to use custom colors
+        
         print(f"  ✓ Configuration loaded from {filepath}")
+        if 'THEME_NAME' in config:
+            print(f"  ✓ Theme: {config['THEME']} - {config['THEME_NAME']}")
         return config
     except Exception as e:
         print(f"  ⚠️  Error reading config file: {e}")
         print(f"  ℹ️  Using default configuration")
+        # Apply default theme
+        theme = THEMES[1]
+        config['PRIMARY_COLOR'] = theme['PRIMARY_COLOR']
+        config['PRIMARY_LIGHT'] = theme['PRIMARY_LIGHT']
+        config['PRIMARY_DARK'] = theme['PRIMARY_DARK']
+        config['THEME_NAME'] = theme['name']
         return config
 
 
@@ -475,21 +568,142 @@ def insert_background_image(html_content, background_data):
 
 
 def apply_theme_colors(html_content, config):
-    """Apply theme colors from config to HTML"""
-    # Replace CSS color variables
+    """Apply theme colors from config to HTML - comprehensive color replacement"""
+    primary = config['PRIMARY_COLOR']
+    light = config['PRIMARY_LIGHT']
+    dark = config['PRIMARY_DARK']
+    
+    # 1. Replace CSS :root variables
     html_content = re.sub(
         r'(--primary-color:\s*)#[0-9a-fA-F]{6}',
-        r'\1' + config['PRIMARY_COLOR'],
+        r'\1' + primary,
         html_content
     )
     html_content = re.sub(
         r'(--primary-light:\s*)#[0-9a-fA-F]{6}',
-        r'\1' + config['PRIMARY_LIGHT'],
+        r'\1' + light,
         html_content
     )
     html_content = re.sub(
         r'(--primary-dark:\s*)#[0-9a-fA-F]{6}',
-        r'\1' + config['PRIMARY_DARK'],
+        r'\1' + dark,
+        html_content
+    )
+    
+    # 2. Replace gradient definitions (--primary-gradient)
+    html_content = re.sub(
+        r'(--primary-gradient:\s*linear-gradient\(135deg,\s*)#[0-9a-fA-F]{6}(\s*0%,\s*)#[0-9a-fA-F]{6}(\s*100%\))',
+        r'\1' + primary + r'\2' + light + r'\3',
+        html_content
+    )
+    
+    # 3. Replace secondary gradient
+    html_content = re.sub(
+        r'(--secondary-gradient:\s*linear-gradient\(135deg,\s*)#[0-9a-fA-F]{6}(\s*0%,\s*)#[0-9a-fA-F]{6}(\s*100%\))',
+        r'\1' + light + r'\2' + primary + r'\3',
+        html_content
+    )
+    
+    # 4. Replace body background gradient (main background)
+    # Pattern: linear-gradient(135deg, #d5114a 0%, #ff6b8b 50%, #ffb3c6 100%)
+    html_content = re.sub(
+        r'(background:\s*linear-gradient\(135deg,\s*)#[0-9a-fA-F]{6}(\s*0%,\s*)#[0-9a-fA-F]{6}(\s*50%,\s*)#[0-9a-fA-F]{6}(\s*100%\))',
+        r'\1' + primary + r'\2' + light + r'\3' + light + r'\4',
+        html_content
+    )
+    
+    # 5. Replace inline gradient colors in body tag
+    # This handles the main page background
+    body_gradient_pattern = r'(body\s*{[^}]*background:\s*linear-gradient\([^)]+\))'
+    def replace_body_gradient(match):
+        text = match.group(0)
+        # Replace all hex colors in this gradient
+        text = re.sub(r'#d5114a', primary, text)
+        text = re.sub(r'#ff6b8b', light, text)
+        text = re.sub(r'#ffb3c6', light, text)
+        text = re.sub(r'#a00d38', dark, text)
+        return text
+    html_content = re.sub(body_gradient_pattern, replace_body_gradient, html_content, flags=re.DOTALL)
+    
+    # 6. Replace rgba colors (for shadows and overlays)
+    # Convert hex to RGB for rgba replacements
+    def hex_to_rgb(hex_color):
+        hex_color = hex_color.lstrip('#')
+        return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    
+    primary_rgb = hex_to_rgb(primary)
+    
+    # Replace rgba(213, 17, 74, ...) with new primary color
+    html_content = re.sub(
+        r'rgba\(213,\s*17,\s*74,',
+        f'rgba({primary_rgb[0]}, {primary_rgb[1]}, {primary_rgb[2]},',
+        html_content
+    )
+    
+    # 7. Replace --primary-lighter variable (lighter shade)
+    # Calculate a lighter shade (mix light with white)
+    html_content = re.sub(
+        r'(--primary-lighter:\s*)#[0-9a-fA-F]{6}',
+        r'\1' + light,  # Use light color for lighter variant
+        html_content
+    )
+    
+    # 8. Replace accent gradient
+    html_content = re.sub(
+        r'(--accent-gradient:\s*linear-gradient\(135deg,\s*)#[0-9a-fA-F]{6}(\s*0%,\s*)#[0-9a-fA-F]{6}(\s*100%\))',
+        r'\1' + light + r'\2' + light + r'\3',
+        html_content
+    )
+    
+    # 9. Replace thank-you-subtitle color
+    html_content = re.sub(
+        r'(\.thank-you-subtitle\s*{\s*color:\s*)#[0-9a-fA-F]{6}',
+        r'\1' + primary,
+        html_content
+    )
+    
+    # 10. Replace thank-you-text gradient
+    html_content = re.sub(
+        r'(background-image:\s*linear-gradient\(135deg,\s*)#d5114a(\s*0%,\s*)#ff7ba5(\s*100%\))',
+        r'\1' + primary + r'\2' + light + r'\3',
+        html_content
+    )
+    
+    # 11. Replace hover gradient for thank-you-text
+    html_content = re.sub(
+        r'(\.thank-you-text:hover[^}]*background-image:\s*linear-gradient\(135deg,\s*)#ff7ba5(\s*0%,\s*)#d5114a(\s*100%\))',
+        r'\1' + light + r'\2' + primary + r'\3',
+        html_content
+    )
+    
+    # 12. Replace logo color in JavaScript
+    html_content = re.sub(
+        r"(const logoColor = slideIndex === totalSlides -1 \? ')#d5114a(' : 'white')",
+        r"\1" + primary + r"\2",
+        html_content
+    )
+    
+    # 13. Replace all remaining hardcoded color references
+    # This is a comprehensive replacement for any missed instances
+    html_content = re.sub(r'#d5114a', primary, html_content)
+    html_content = re.sub(r'#ff6b8b', light, html_content)
+    html_content = re.sub(r'#a00d38', dark, html_content)
+    html_content = re.sub(r'#ffb3c6', light, html_content)  # lighter variant
+    html_content = re.sub(r'#ff7ba5', light, html_content)  # another light variant
+    
+    # 14. Replace rgba colors with different opacities
+    # rgba(213, 17, 74, X) -> rgba(primary_rgb, X)
+    html_content = re.sub(
+        r'rgba\(213,\s*17,\s*74,\s*([0-9.]+)\)',
+        f'rgba({primary_rgb[0]}, {primary_rgb[1]}, {primary_rgb[2]}, \\1)',
+        html_content
+    )
+    
+    # rgba(255, 107, 139, X) -> rgba(light_rgb, X)
+    light_rgb = hex_to_rgb(light)
+    html_content = re.sub(
+        r'rgba\(255,\s*107,\s*139,\s*([0-9.]+)\)',
+        f'rgba({light_rgb[0]}, {light_rgb[1]}, {light_rgb[2]}, \\1)',
         html_content
     )
     
@@ -787,7 +1001,13 @@ def main():
     print("\n🎨 APPLYING CONFIGURATION...")
     print("-" * 70)
     html_content = apply_theme_colors(html_content, config)
-    print(f"  ✓ Theme colors applied")
+    print(f"  ✓ Theme colors applied to:")
+    print(f"    • CSS variables (:root)")
+    print(f"    • Background gradients")
+    print(f"    • Button and card colors")
+    print(f"    • Shadows and overlays")
+    print(f"    • Logo colors")
+    print(f"    • All UI elements")
     
     html_content = apply_team_info(html_content, config)
     print(f"  ✓ Team information applied")

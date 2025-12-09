@@ -32,6 +32,23 @@ python make_slide.py
 - Task: `Learner/Trainer location` → File: `Learner_Trainer location-01.png` ✅
 - Special characters (`/`, `,`, `:`, etc.) → Replace with underscore `_`
 
+### 🎨 Theme Preview
+
+Choose from 10 beautiful pre-designed themes:
+
+```
+Theme 1: Pink/Rose      ████ #d5114a  ████ #ff6b8b  ████ #a00d38
+Theme 2: Blue Ocean     ████ #1e40af  ████ #3b82f6  ████ #1e3a8a
+Theme 3: Green Forest   ████ #15803d  ████ #22c55e  ████ #14532d
+Theme 4: Purple Dream   ████ #7c3aed  ████ #a78bfa  ████ #5b21b6
+Theme 5: Orange Sunset  ████ #ea580c  ████ #fb923c  ████ #c2410c
+Theme 6: Red Passion    ████ #dc2626  ████ #ef4444  ████ #991b1b
+Theme 7: Teal Wave      ████ #0d9488  ████ #14b8a6  ████ #115e59
+Theme 8: Indigo Night   ████ #4f46e5  ████ #6366f1  ████ #3730a3
+Theme 9: Amber Gold     ████ #d97706  ████ #f59e0b  ████ #92400e
+Theme 10: Emerald Luxury ████ #059669  ████ #10b981  ████ #065f46
+```
+
 ## Features
 
 ### 🎯 Core Features
@@ -133,10 +150,8 @@ The `basic_slide.html` file is a complete interactive presentation that:
 Edit `config.txt` to customize your presentation:
 
 ```txt
-# Theme Colors (Hex color codes)
-PRIMARY_COLOR=#d5114a
-PRIMARY_LIGHT=#ff6b8b
-PRIMARY_DARK=#a00d38
+# Choose a theme (1-10)
+THEME=1
 
 # Team Information
 TEAM_NAME=LMS Team
@@ -148,6 +163,14 @@ TEAM_MEMBERS=Fizul Haque,Samiul Islam,Moin Sharif
 # Contact Information
 CONTACT_EMAIL=info@orbittechinc.com
 ```
+
+**Quick Theme Preview:**
+- `THEME=1` 🌸 Pink/Rose (Default)
+- `THEME=2` 🌊 Blue Ocean
+- `THEME=3` 🌲 Green Forest
+- `THEME=4` 💜 Purple Dream
+- `THEME=5` 🧡 Orange Sunset
+- ... and 5 more themes!
 
 ### Step 2: Prepare Data
 1. Write your achievements list in `[Month] Achivment.txt`
@@ -330,18 +353,41 @@ project/
 
 The easiest way to customize your presentation is by editing `config.txt`:
 
-#### Change Theme Colors
+#### Change Theme (Super Easy!)
+Just set the theme number (1-10) in `config.txt`:
+```txt
+THEME=2    # Blue Ocean theme
+```
+
+**Available Themes:**
+
+| # | Theme Name | Colors | Best For |
+|---|------------|--------|----------|
+| 1 | Pink/Rose (Default) | 🌸 Pink | Creative teams |
+| 2 | Blue Ocean | 🌊 Blue | Corporate/Professional |
+| 3 | Green Forest | 🌲 Green | Eco-friendly projects |
+| 4 | Purple Dream | 💜 Purple | Premium brands |
+| 5 | Orange Sunset | 🧡 Orange | Friendly teams |
+| 6 | Red Passion | ❤️ Red | Dynamic presentations |
+| 7 | Teal Wave | 🌀 Teal | Tech companies |
+| 8 | Indigo Night | 🌌 Indigo | Innovative projects |
+| 9 | Amber Gold | 🟡 Amber | Financial sectors |
+| 10 | Emerald Luxury | 💚 Emerald | High-end services |
+
+**Example:**
+```txt
+THEME=3    # Green Forest theme
+THEME=7    # Teal Wave theme
+THEME=10   # Emerald Luxury theme
+```
+
+#### Advanced: Custom Colors (Optional)
+If you want specific colors, uncomment these lines in `config.txt`:
 ```txt
 PRIMARY_COLOR=#d5114a      # Main theme color
 PRIMARY_LIGHT=#ff6b8b      # Light variant
 PRIMARY_DARK=#a00d38       # Dark variant
 ```
-
-**Popular Color Schemes:**
-- **Blue Theme**: `#1e40af`, `#3b82f6`, `#1e3a8a`
-- **Green Theme**: `#15803d`, `#22c55e`, `#14532d`
-- **Purple Theme**: `#7c3aed`, `#a78bfa`, `#5b21b6`
-- **Orange Theme**: `#ea580c`, `#fb923c`, `#c2410c`
 
 #### Change Team Information
 ```txt
@@ -447,13 +493,15 @@ If you see `✗ No match found`, fix the filename.
 
 ### ❓ How do I change the theme color?
 
-**Answer:** Edit `config.txt` and change the `PRIMARY_COLOR`, `PRIMARY_LIGHT`, and `PRIMARY_DARK` values.
+**Answer:** Super easy! Just change the `THEME` number in `config.txt`:
 
 ```txt
-PRIMARY_COLOR=#1e40af    # Change to your preferred color
-PRIMARY_LIGHT=#3b82f6
-PRIMARY_DARK=#1e3a8a
+THEME=2    # Blue Ocean
+THEME=5    # Orange Sunset
+THEME=10   # Emerald Luxury
 ```
+
+Choose any number from 1 to 10. Each theme has perfectly coordinated colors!
 
 ### ❓ How do I add or remove team members?
 
