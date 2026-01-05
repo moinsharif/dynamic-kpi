@@ -8,3 +8,11 @@ Task Management --MWM
 CloudVison API implementation --LMS
 Trial course feature implementation --LMS
 Custom video upload feature --LMS
+Auto report submit from daily completed task --LMS
+Multiple Assignment Plagiarism/AI report score save functionality --LMS
+Bug fixing --LMS
+Assignment custom feedback setup for Level 2 course --LMS
+CourseAssignment,CourseAssessment,CourseExam optimization --LMS
+Automatic credentials generate and send with mail --LMS
+Research and implementation browser notification --LMS
+Work with MWM feature --MWM
