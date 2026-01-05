@@ -1249,6 +1249,12 @@ function handleKeyPress(e) {
         } else if (e.key === 'ArrowLeft') {
             e.preventDefault();
             previousSlide();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            previousSlide();
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextSlide();
         } else if (e.key === 'F5') {
             e.preventDefault();
             currentSlide = 0;

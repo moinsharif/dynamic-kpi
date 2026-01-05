@@ -1397,10 +1397,12 @@ function showSlide(slideIndex) {
 }
 // Slide navigation
 function nextSlide() {
+    if(currentSlide === (totalSlides - 1)) return;
     currentSlide = (currentSlide + 1) % totalSlides;
     showSlide(currentSlide);
 }
 function previousSlide() {
+    if(currentSlide === 0) return;
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
     showSlide(currentSlide);
 }
@@ -1430,6 +1432,12 @@ function handleKeyPress(e) {
         } else if (e.key === 'ArrowLeft') {
             e.preventDefault();
             previousSlide();
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            previousSlide();
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            nextSlide();
         } else if (e.key === 'F5') {
             e.preventDefault();
             currentSlide = 0;
