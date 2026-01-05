@@ -15,4 +15,3 @@ Assignment custom feedback setup for Level 2 course --LMS
 CourseAssignment,CourseAssessment,CourseExam optimization --LMS
 Automatic credentials generate and send with mail --LMS
 Research and implementation browser notification --LMS
-Work with MWM feature --MWM
