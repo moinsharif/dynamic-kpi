@@ -1,2 +1,10 @@
-Auto report submit from daily completed task --LMS
-Multiple Assignment Plagiarism/AI report score save functionality --LMS
+Student ID Card Page implement --LMS
+Meeting management bug fixed --MWM
+Import Old dashboard portal learner and batch --LM
+Lms Backup history details --LMS
+Share host to vps server migration --LMS
+Old lms to new lms nvq enrollment --LMS
+Task Management --MWM
+CloudVison API implementation --LMS
+Trial course feature implementation --LMS
+Custom video upload feature --LMS
