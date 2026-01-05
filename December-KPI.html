@@ -1214,10 +1214,12 @@ function showSlide(slideIndex) {
 }
 // Slide navigation
 function nextSlide() {
+    if(currentSlide === (totalSlides - 1)) return;
     currentSlide = (currentSlide + 1) % totalSlides;
     showSlide(currentSlide);
 }
 function previousSlide() {
+    if(currentSlide === 0) return;
     currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
     showSlide(currentSlide);
 }
