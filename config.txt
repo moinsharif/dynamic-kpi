@@ -10,7 +10,7 @@
 # Simply change the number to switch themes instantly!
 # Each theme has 3 perfectly coordinated colors
 
-THEME=6
+THEME=9
 
 # ┌────┬─────────────────────┬──────────┬──────────┬──────────┬─────────────────┐
 # │ #  │ Theme Name          │ Primary  │ Light    │ Dark     │ Best For        │

@@ -1,0 +1,2 @@
+Auto report submit from daily completed task --LMS
+Multiple Assignment Plagiarism/AI report score save functionality --LMS
